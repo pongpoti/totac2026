@@ -1,5 +1,6 @@
 import express from "express"
 import * as line from "@line/bot-sdk"
+import axios from "axios"
 
 const app = express()
 const port = process.env.PORT || 3030
