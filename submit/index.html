@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LEAVE LETTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        #body {
+            display: none;
+        }
+    </style>
+</head>
+
+<body id="body">
+    <div class="h-screen flex justify-center items-center bg-orange-50">
+        <div>
+            <img class="w-100 h-50" src="./tots.png">
+        </div>
+    </div>
+
+    <script>
+        const body = document.getElementById("body")
+        if (window.innerWidth < 481) {
+            body.style.display = "block"
+        }
+    </script>
+</body>
+
+</html>

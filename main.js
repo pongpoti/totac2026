@@ -17,6 +17,9 @@ app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
 
+app.use("/letter", express.static("letter"))
+app.use("/submit", express.static("submit"))
+
 app.post("/line", line.middleware(config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
