@@ -38,7 +38,7 @@
         const main = async () => {
             const body = document.getElementById("body")
             const iframe = document.getElementById("iframe")
-            if (window.innerWidth > 481) {
+            if (window.innerWidth < 481) {
                 body.style.display = "block"
                 const id = await form()
                 iframe.src = "https://tally.so/r/" + id
@@ -381,7 +381,7 @@
             try {
                 await axios.post("https://api.tally.so/webhooks", {
                     formId: id,
-                    url: "https://script.google.com/macros/s/AKfycbyC42DSGIBvE1dj_s-CF_Bsk80Y_oPhD-MACbTsCHjqWmPb7YTHl_oMwQtyE5xIt5rzVQ/exec?id=" + id,
+                    url: "https://script.google.com/macros/s/AKfycby05lCZfpPTuPtBZArEywyhZWFHzLo8DTaQgAwEOydQ6JaM18ngk0jQl6Wv07I-Z1ofpw/exec?id=" + id,
                     eventTypes: ["FORM_RESPONSE"]
                 })
             } catch (error) {
