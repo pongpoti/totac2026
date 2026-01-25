@@ -54,9 +54,13 @@ app.post("/callback", (req, res) => {
                 type: type,
                 workplace: workplace,
                 email: email,
-                id: id
             }
-            console.log(object)
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+            await axios.post("https://script.google.com/macros/s/AKfycbxK-UODM_LLmKkSodYx-UfzdWoILggUyJnF1SwFb31TJEz-ThL8LyMXCm1u9z7aFJng5g/exec", object, config)
         } catch (error) {
             console.error(error)
             res.sendStatus(500)
