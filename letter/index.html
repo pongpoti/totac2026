@@ -51,6 +51,8 @@
         }
         const createForm = async () => {
             try {
+                const groupUuid_prefix = crypto.randomUUID()
+                const groupUuid_workplaceType = crypto.randomUUID()
                 const { data } = await axios.post("https://api.tally.so/forms", {
                     name: "totac2026 - letter",
                     status: "PUBLISHED",
@@ -110,7 +112,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_prefix,
                             groupType: "DROPDOWN",
                             payload: {
                                 index: 0,
@@ -123,7 +125,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_prefix,
                             groupType: "DROPDOWN",
                             payload: {
                                 isRequired: true,
@@ -136,7 +138,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_prefix,
                             groupType: "DROPDOWN",
                             payload: {
                                 isRequired: true,
@@ -149,7 +151,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_prefix,
                             groupType: "DROPDOWN",
                             payload: {
                                 isRequired: true,
@@ -162,7 +164,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_prefix,
                             groupType: "DROPDOWN",
                             payload: {
                                 isRequired: true,
@@ -234,7 +236,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_workplaceType,
                             groupType: "DROPDOWN",
                             payload: {
                                 index: 0,
@@ -247,7 +249,7 @@
                         {
                             uuid: crypto.randomUUID(),
                             type: "DROPDOWN_OPTION",
-                            groupUuid: crypto.randomUUID(),
+                            groupUuid: groupUuid_workplaceType,
                             groupType: "DROPDOWN",
                             payload: {
                                 isRequired: true,
