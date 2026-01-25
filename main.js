@@ -14,6 +14,8 @@ const client = new line.messagingApi.MessagingApiClient({
 })
 axios.defaults.headers.post["Content-Type"] = "application/json"
 axios.defaults.headers.post["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
+axios.defaults.headers.delete["Content-Type"] = "application/json"
+axios.defaults.headers.delete["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
@@ -37,34 +39,30 @@ app.post("/callback", (req, res) => {
     req.on("data", chunk => {
         body += chunk.toString()
     })
-    req.on("end", async () => {
-        try {
-            res.sendStatus(200)
-            const { data } = JSON.parse(body)
-            const prefix = getOptionAnswer(data.fields[0].options, data.fields[0].value[0])
-            const name = data.fields[1].value
-            const surname = data.fields[2].value
-            const type = getOptionAnswer(data.fields[3].options, data.fields[3].value[0])
-            const workplace = data.fields[4].value
-            const email = data.fields[5].value
-            const object = {
-                prefix: prefix,
-                name: name,
-                surname: surname,
-                type: type,
-                workplace: workplace,
-                email: email,
-            }
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                }
-            }
-            await axios.post("https://script.google.com/macros/s/AKfycbxK-UODM_LLmKkSodYx-UfzdWoILggUyJnF1SwFb31TJEz-ThL8LyMXCm1u9z7aFJng5g/exec", object, config)
-        } catch (error) {
-            console.error(error)
-            res.sendStatus(500)
+    req.on("end", () => {
+        res.sendStatus(200)
+        const { data } = JSON.parse(body)
+        const prefix = getOptionAnswer(data.fields[0].options, data.fields[0].value[0])
+        const name = data.fields[1].value
+        const surname = data.fields[2].value
+        const type = getOptionAnswer(data.fields[3].options, data.fields[3].value[0])
+        const workplace = data.fields[4].value
+        const email = data.fields[5].value
+        const object = {
+            prefix: prefix,
+            name: name,
+            surname: surname,
+            type: type,
+            workplace: workplace,
+            email: email,
         }
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        }
+        axios.post("https://script.google.com/macros/s/AKfycbxK-UODM_LLmKkSodYx-UfzdWoILggUyJnF1SwFb31TJEz-ThL8LyMXCm1u9z7aFJng5g/exec", object, config)
+            .then(() => deleteForm(id)).catch((error) => console.error(error))
     })
 })
 
