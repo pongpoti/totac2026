@@ -39,11 +39,11 @@ app.post("/callback", (req, res) => {
     })
     req.on("end", async () => {
         try {
-            const parsedData = JSON.parse(body)
-            console.log(parsedData)
+            const { data } = JSON.parse(body)
+            console.log(data)
+            console.log(data.fields[0].options[0].value)
             console.log(id)
             res.sendStatus(200)
-            console.log("after sendStatus")
         } catch (error) {
             console.error(error)
             res.sendStatus(500)
