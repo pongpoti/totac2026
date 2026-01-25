@@ -42,6 +42,8 @@ app.post("/callback", (req, res) => {
             const parsedData = JSON.parse(body)
             console.log(parsedData)
             console.log(id)
+            res.sendStatus(200)
+            console.log("after sendStatus")
         } catch (error) {
             console.error(error)
             res.sendStatus(500)
