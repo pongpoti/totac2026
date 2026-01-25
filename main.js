@@ -23,7 +23,7 @@ app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 
 app.get("/letter/init", (_, res) => {
-    buildForm().then((id) => {
+    form().then((id) => {
         res.redirect("https://totac2026.pongpoti.deno.net/letter/activate?id=" + id)
     }).catch((error) => {
         console.error(error)
@@ -32,9 +32,21 @@ app.get("/letter/init", (_, res) => {
 })
 
 app.post("/callback", (req, res) => {
-    const body = req.body
-    console.log(JSON.stringify(body))
-    res.status(200).end()
+    const id = req.query.id
+    let body = ""
+    req.on("data", chunk => {
+        body += chunk.toString()
+    })
+    req.on("end", async () => {
+        try {
+            const parsedData = JSON.parse(body)
+            console.log(parsedData)
+            console.log(id)
+        } catch (error) {
+            console.error(error)
+            res.sendStatus(500)
+        }
+    })
 })
 
 app.post("/line", line.middleware(config), (req, res) => {
@@ -1007,12 +1019,12 @@ const bakery_object =
         }
     ]
 }
-const buildForm = async () => {
-    const id = await createNewForm()
+const form = async () => {
+    const id = await createForm()
     await addWebhook(id)
     return id
 }
-const createNewForm = async () => {
+const createForm = async () => {
     try {
         const groupUuid_prefix = crypto.randomUUID()
         const groupUuid_workplaceType = crypto.randomUUID()
@@ -1351,4 +1363,10 @@ const addWebhook = async (id) => {
         console.error(error)
     }
 }
-//
+const deleteForm = async (id) => {
+    try {
+        await axios.delete("https://api.tally.so/forms/" + id)
+    } catch (error) {
+        console.error(error)
+    }
+}
