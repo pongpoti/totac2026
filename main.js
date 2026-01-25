@@ -47,7 +47,16 @@ app.post("/callback", (req, res) => {
             const type = getOptionAnswer(data.fields[3].options, data.fields[3].value[0])
             const workplace = data.fields[4].value
             const email = data.fields[5].value
-            console.log(prefix, name, surname, type, workplace, email)
+            const object = {
+                prefix: prefix,
+                name: name,
+                surname: surname,
+                type: type,
+                workplace: workplace,
+                email: email,
+                id: id
+            }
+            console.log(object)
         } catch (error) {
             console.error(error)
             res.sendStatus(500)
