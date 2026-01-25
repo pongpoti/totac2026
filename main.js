@@ -990,4 +990,3 @@ const bakery_object =
         }
     ]
 }
-
