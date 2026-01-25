@@ -51,7 +51,7 @@
         }
         const createForm = async () => {
             try {
-                const { data } = axios.post("https://api.tally.so/forms", {
+                const { data } = await axios.post("https://api.tally.so/forms", {
                     name: "totac2026 - letter",
                     status: "PUBLISHED",
                     settings: {
