@@ -12,13 +12,30 @@ const config = { channelSecret: "50dd6122944e61573f6aaaa76ad9ebbb" }
 const client = new line.messagingApi.MessagingApiClient({
     channelAccessToken: "ghXEhAvBnIVWM+YH7FdbugEGoW2IUV268U6Yhn+c5Szt7NCgZdZ1smtDfxx4UDx840KcwU4fb0D/Mzz9RCeJcitdSpvVp45Z0Jfp0RzFVCx3B0xFSOSyTLZ6fX0zJ404WeLNK8/xN/rHEyIkBd7CZgdB04t89/1O/w1cDnyilFU=",
 })
+axios.defaults.headers.post["Content-Type"] = "application/json"
+axios.defaults.headers.post["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
 
-app.use("/letter", express.static("letter"))
+app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
+
+app.get("/letter/init", (_, res) => {
+    buildForm().then((id) => {
+        res.redirect("https://totac2026.pongpoti.deno.net/letter/activate?id=" + id)
+    }).catch((error) => {
+        console.error(error)
+        res.sendStatus(500)
+    })
+})
+
+app.post("/callback", (req, res) => {
+    const body = req.body
+    console.log(JSON.stringify(body))
+    res.status(200).end()
+})
 
 app.post("/line", line.middleware(config), (req, res) => {
     Promise
@@ -990,3 +1007,348 @@ const bakery_object =
         }
     ]
 }
+const buildForm = async () => {
+    const id = await createNewForm()
+    await addWebhook(id)
+    return id
+}
+const createNewForm = async () => {
+    try {
+        const groupUuid_prefix = crypto.randomUUID()
+        const groupUuid_workplaceType = crypto.randomUUID()
+        const { data } = await axios.post("https://api.tally.so/forms", {
+            name: "totac2026 - letter",
+            status: "PUBLISHED",
+            settings: {
+                redirectOnCompletion: {
+                    safeHTMLSchema: [
+                        [
+                            "https://totac2026.pongpoti.deno.net/submit"
+                        ]
+                    ],
+                    mentions: []
+                },
+                styles: {
+                    theme: "CUSTOM",
+                    color: {
+                        background: "#eef2ff",
+                        text: "#241e4e",
+                        accent: "#0070D7",
+                        buttonBackground: "#241e4e",
+                        buttonText: "#FFFFFF"
+                    },
+                    font: {
+                        provider: "Google",
+                        family: "Google Sans"
+                    }
+                },
+            },
+            blocks: [
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "FORM_TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "TEXT",
+                    payload: {
+                        cover: "https://storage.tally.so/3524c5a7-abf6-4944-b817-55741b363fbb/Untitled-design.png",
+                        safeHTMLSchema: [
+                            [
+                                "กรุณากรอกข้อมูล"
+                            ]
+                        ],
+                        title: "กรุณากรอกข้อมูล"
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "QUESTION",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "คำนำหน้า"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_prefix,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        index: 0,
+                        isRequired: true,
+                        isFirst: true,
+                        isLast: false,
+                        text: "น.พ."
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_prefix,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        isRequired: true,
+                        index: 1,
+                        isFirst: false,
+                        isLast: false,
+                        text: "พ.ญ."
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_prefix,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        isRequired: true,
+                        index: 2,
+                        isFirst: false,
+                        isLast: false,
+                        text: "นาย"
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_prefix,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        isRequired: true,
+                        index: 3,
+                        isFirst: false,
+                        isLast: false,
+                        text: "นาง"
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_prefix,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        isRequired: true,
+                        index: 4,
+                        isFirst: false,
+                        isLast: true,
+                        text: "นางสาว"
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "QUESTION",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "ชื่อ (พิมพ์แค่ชื่อ)"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "INPUT_TEXT",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "INPUT_TEXT",
+                    payload: {
+                        isRequired: true,
+                        placeholder: ""
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "QUESTION",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "นามสกุล (พิมพ์แค่นามสกุล)"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "INPUT_TEXT",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "INPUT_TEXT",
+                    payload: {
+                        isRequired: true,
+                        placeholder: ""
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "QUESTION",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "ประเภทสถานที่ทำงาน"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_workplaceType,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        index: 0,
+                        isRequired: true,
+                        isFirst: true,
+                        isLast: false,
+                        text: "โรงพยาบาล **ในสังกัด** มหาวิทยาลัย"
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DROPDOWN_OPTION",
+                    groupUuid: groupUuid_workplaceType,
+                    groupType: "DROPDOWN",
+                    payload: {
+                        isRequired: true,
+                        index: 1,
+                        isFirst: false,
+                        isLast: true,
+                        text: "โรงพยาบาลที่ **ไม่อยู่สังกัด** มหาวิทยาลัย"
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "DIVIDER",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "DIVIDER",
+                    payload: {}
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TEXT",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "DIVIDER",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "วิธีการพิมพ์ชื่อสถานที่ทำงาน",
+                                [
+                                    [
+                                        "tag",
+                                        "span"
+                                    ],
+                                    [
+                                        "font-weight",
+                                        "bold"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "\n\n   # "
+                            ],
+                            [
+                                "กรณี",
+                                [
+                                    [
+                                        "tag",
+                                        "span"
+                                    ],
+                                    [
+                                        "background-color",
+                                        "rgb(255, 225, 72)"
+                                    ]
+                                ]
+                            ],
+                            [
+                                " โรงพยาบาลในสังกัดมหาวิทยาลัย\n   พิมพ์ชื่อเต็มตามด้วยสังกัด เช่น คณะแพทยศาสตร์วชิรพยาบาล มหาวิทยาลัยนวมินทราธิราช\n\n   # "
+                            ],
+                            [
+                                "กรณี",
+                                [
+                                    [
+                                        "tag",
+                                        "span"
+                                    ],
+                                    [
+                                        "background-color",
+                                        "rgb(255, 225, 72)"
+                                    ]
+                                ]
+                            ],
+                            [
+                                " โรงพยาบาลอื่น ๆ ( โรงพยาบาลศูนย์ , โรงพยาบาลทั่วไป , โรงพยาบาลเอกชน ... )\n   พิมพ์คำว่า \"โรงพยาบาล\" นำหน้าชื่อ  เช่น  โรงพยาบาลพุทธชินราช"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "QUESTION",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "ชื่อสถานที่ทำงาน"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "INPUT_TEXT",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "INPUT_TEXT",
+                    payload: {
+                        isRequired: true,
+                        placeholder: ""
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "TITLE",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "QUESTION",
+                    payload: {
+                        safeHTMLSchema: [
+                            [
+                                "E-mail สำหรับจัดส่งไฟล์"
+                            ]
+                        ]
+                    }
+                },
+                {
+                    uuid: crypto.randomUUID(),
+                    type: "INPUT_EMAIL",
+                    groupUuid: crypto.randomUUID(),
+                    groupType: "INPUT_EMAIL",
+                    payload: {
+                        isRequired: true,
+                        placeholder: ""
+                    }
+                }
+            ]
+        })
+        return data.id
+    } catch (error) {
+        console.error(error)
+    }
+}
+const addWebhook = async (id) => {
+    try {
+        await axios.post("https://api.tally.so/webhooks", {
+            formId: id,
+            url: "https://totac2026.pongpoti.deno.net/callback?id=" + id,
+            eventTypes: ["FORM_RESPONSE"]
+        })
+    } catch (error) {
+        console.error(error)
+    }
+}
+//
