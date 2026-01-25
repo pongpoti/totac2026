@@ -39,11 +39,15 @@ app.post("/callback", (req, res) => {
     })
     req.on("end", async () => {
         try {
-            const { data } = JSON.parse(body)
-            console.log(data)
-            console.log(data.fields[0].options[0].value)
-            console.log(id)
             res.sendStatus(200)
+            const { data } = JSON.parse(body)
+            const prefix = getOptionAnswer(data.fields[0].options, data.fields[0].value[0])
+            const name = data.fields[1].value
+            const surname = data.fields[2].value
+            const type = getOptionAnswer(data.fields[3].options, data.fields[3].value[0])
+            const workplace = data.fields[4].value
+            const email = data.fields[5].value
+            console.log(prefix, name, surname, type, workplace, email)
         } catch (error) {
             console.error(error)
             res.sendStatus(500)
@@ -1370,5 +1374,12 @@ const deleteForm = async (id) => {
         await axios.delete("https://api.tally.so/forms/" + id)
     } catch (error) {
         console.error(error)
+    }
+}
+const getOptionAnswer = (options, value) => {
+    for (const o of options) {
+        if (o.id === value) {
+            return o.text
+        }
     }
 }
