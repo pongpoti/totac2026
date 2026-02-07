@@ -1,6 +1,7 @@
 import express from "express"
 import * as line from "@line/bot-sdk"
 import axios from "axios"
+import { createClient } from "@supabase/supabase-js"
 
 const app = express()
 const port = process.env.PORT || 3030
@@ -16,6 +17,7 @@ axios.defaults.headers.post["Content-Type"] = "application/json"
 axios.defaults.headers.post["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
 axios.defaults.headers.delete["Content-Type"] = "application/json"
 axios.defaults.headers.delete["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
+const supabase = createClient("https://vwpfuieqetmzjopzhetn.supabase.co", "sb_publishable_neva2oamaffoDv-ChO1wlA_bWlsrlYj")
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
@@ -24,6 +26,15 @@ app.listen(port, () => {
 app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 
+app.get("/test", (_, res) => {
+    try {
+        const { data } = supabase.from("agenda").select()
+        res.send(data.json())
+    } catch (error) {
+        console.error(error)
+        res.sendStatus(500)
+    }
+})
 app.get("/letter/init", (_, res) => {
     form().then((id) => {
         res.redirect("https://totac2026.pongpoti.deno.net/letter/activate?id=" + id)
