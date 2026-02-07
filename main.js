@@ -26,10 +26,10 @@ app.listen(port, () => {
 app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 
-app.get("/test", (_, res) => {
+app.get("/test", async (_, res) => {
     try {
-        const { data } = supabase.from("agenda").select()
-        res.send(data.json())
+        const { data } = await supabase.from("agenda").select()
+        res.json(data)
     } catch (error) {
         console.error(error)
         res.sendStatus(500)
