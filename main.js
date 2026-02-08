@@ -2,6 +2,7 @@ import express from "express"
 import * as line from "@line/bot-sdk"
 import axios from "axios"
 import { createClient } from "@supabase/supabase-js"
+import fuse from "fuse.js"
 
 const app = express()
 const port = process.env.PORT || 3030
