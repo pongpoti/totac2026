@@ -149,7 +149,7 @@ const handleEvent = async (event) => {
             ]
         })
     } else if (message.startsWith("#")) {
-        const results = searchKeyword(message.substring(1))
+        const results = await searchKeyword(message.substring(1))
         client.replyMessage({
             "replyToken": event.replyToken,
             "messages": [
