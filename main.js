@@ -156,7 +156,7 @@ const handleEvent = async (event) => {
     } else if (message.startsWith("#")) {
         const results = await searchKeyword(message.substring(1).trim())
         console.log(results)
-        console.log(JSON.parse(results))
+        console.log(JSON.stringify(results))
         client.replyMessage({
             "replyToken": event.replyToken,
             "messages": [
