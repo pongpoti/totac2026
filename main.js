@@ -161,7 +161,153 @@ const handleEvent = async (event) => {
             "messages": [
                 {
                     "type": "text",
-                    "text": "บริการนี้ยังไม่เปิดใช้งาน"
+                    "text": "Found 1 results"
+                },
+                {
+                    "type": "flex",
+                    "altText": "ผลการค้นหา",
+                    "contents": {
+                        "type": "bubble",
+                        "size": "giga",
+                        "header": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [],
+                                    "height": "15px",
+                                    "backgroundColor": "#db8b4e"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [],
+                                    "height": "2px",
+                                    "backgroundColor": "#555555"
+                                }
+                            ],
+                            "paddingAll": "none"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "Name",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "weight": "bold"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "-",
+                                    "size": "md",
+                                    "color": "#555555",
+                                    "margin": "sm",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "-",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "section",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "weight": "bold",
+                                    "margin": "lg"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Trauma night - Dinner symposium (Thai)",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "wrap": true,
+                                    "margin": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "topic",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "weight": "bold",
+                                    "margin": "lg",
+                                    "decoration": "none"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Introduction and Fun from TOTS",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "margin": "sm",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "date & time",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "weight": "bold",
+                                    "margin": "lg"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "18 March 2026, 19:15 - 19:45",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "margin": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "avenue",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "weight": "bold",
+                                    "margin": "lg"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "Room A",
+                                    "color": "#555555",
+                                    "size": "md",
+                                    "margin": "sm"
+                                }
+                            ],
+                            "paddingBottom": "xxl"
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [],
+                                    "height": "2px",
+                                    "backgroundColor": "#555555"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [],
+                                    "backgroundColor": "#db8b4e",
+                                    "height": "10px"
+                                }
+                            ],
+                            "paddingAll": "none"
+                        }
+                    }
+                },
+                {
+                    "type": "text",
+                    "text": "Type # followed by the keyword to search. For example: #coffee"
                 }
             ]
         })
