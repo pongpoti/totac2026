@@ -155,9 +155,15 @@ const handleEvent = async (event) => {
         })
     } else if (message.startsWith("#")) {
         const results = await searchKeyword(message.substring(1).trim())
+        console.log(JSON.stringify(results))
         client.replyMessage({
             "replyToken": event.replyToken,
-            "messages": JSON.stringify(results)
+            "messages": [
+                {
+                    "type": "text",
+                    "text": "บริการนี้ยังไม่เปิดใช้งาน"
+                }
+            ]
         })
     }
 }
