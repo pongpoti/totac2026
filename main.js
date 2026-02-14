@@ -3,7 +3,7 @@ import * as line from "@line/bot-sdk"
 import axios from "axios"
 import { createClient } from "@supabase/supabase-js"
 import fuse from "fuse.js"
-import search_template from "./search_template.json" assert { type: "json" }
+import search_template from "./search_template.json" with { type: "json" }
 
 const app = express()
 const port = process.env.PORT || 3030
