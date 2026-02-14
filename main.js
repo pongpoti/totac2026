@@ -1445,6 +1445,7 @@ const searchKeyword = async (keyword) => {
     ]
     for (const r of search_array) {
         const color = randomColor()
+        console.log(color)
         const object = {
             "type": "flex",
             "altText": "ผลการค้นหา",
@@ -1587,12 +1588,12 @@ const searchKeyword = async (keyword) => {
                 }
             }
         }
+        console.log(object.contents.body.contents)
         return_array.push(object)
     }
     return_array.push({
         "type": "text",
         "text": "Type # followed by the keyword to search. For example: #coffee"
     })
-    console.log(return_array)
     return return_array
 }
