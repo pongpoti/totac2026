@@ -25,7 +25,7 @@ const agenda_day = ["18 March 2026", "19 March 2026", "20 March 2026"]
 const agenda_room = ["Room A", "Room B", "Room C", "Room D"]
 //
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`)
+    console.log("TOTAC2026 server is live")
 })
 
 app.use("/letter/activate", express.static("letter"))
@@ -155,16 +155,9 @@ const handleEvent = async (event) => {
         })
     } else if (message.startsWith("#")) {
         const results = await searchKeyword(message.substring(1).trim())
-        console.log(results)
-        console.log(JSON.stringify(results))
         client.replyMessage({
             "replyToken": event.replyToken,
-            "messages": [
-                {
-                    "type": "text",
-                    "text": "บริการนี้ยังไม่เปิดใช้งาน"
-                }
-            ]
+            "messages": JSON.stringify(results)
         })
     }
 }
@@ -1442,7 +1435,6 @@ const searchKeyword = async (keyword) => {
         ]
     }
     const search_array = (new fuse(data, fuseOptions)).search(keyword)
-    console.log(search_array)
     let return_array = [
         {
             "type": "text",
