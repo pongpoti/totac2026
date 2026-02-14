@@ -1446,7 +1446,7 @@ const searchKeyword = async (keyword) => {
         let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -3) + " - " + data[r.refIndex].end.slice(0, -3), agenda_room[data[r.refIndex].room]]
         results = results.map((x) => {
             if (x === null) {
-                return ""
+                return "-"
             } else {
                 return x
             }
