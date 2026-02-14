@@ -1445,7 +1445,15 @@ const searchKeyword = async (keyword) => {
     ]
     for (const r of search_array) {
         const color = randomColor()
-        console.log(color)
+        let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -2) + " - " + data[r.refIndex].end.slice(0, -2), agenda_room[data[r.refIndex].room]]
+        results = results.map((x) => {
+            if (x === null) {
+                return ""
+            } else {
+                return x
+            }
+        })
+        console.log(results)
         const object = {
             "type": "flex",
             "altText": "ผลการค้นหา",
@@ -1486,7 +1494,7 @@ const searchKeyword = async (keyword) => {
                         },
                         {
                             "type": "text",
-                            "text": data[r.refIndex].name_en,
+                            "text": results[0],
                             "size": "md",
                             "color": "#555555",
                             "margin": "sm",
@@ -1494,7 +1502,7 @@ const searchKeyword = async (keyword) => {
                         },
                         {
                             "type": "text",
-                            "text": data[r.refIndex].name_th,
+                            "text": results[1],
                             "color": "#555555",
                             "size": "md",
                             "wrap": true
@@ -1509,7 +1517,7 @@ const searchKeyword = async (keyword) => {
                         },
                         {
                             "type": "text",
-                            "text": data[r.refIndex].section,
+                            "text": results[2],
                             "color": "#555555",
                             "size": "md",
                             "wrap": true,
@@ -1526,7 +1534,7 @@ const searchKeyword = async (keyword) => {
                         },
                         {
                             "type": "text",
-                            "text": data[r.refIndex].topic,
+                            "text": results[3],
                             "color": "#555555",
                             "size": "md",
                             "margin": "sm",
@@ -1542,7 +1550,7 @@ const searchKeyword = async (keyword) => {
                         },
                         {
                             "type": "text",
-                            "text": agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(-2) + " - " + data[r.refIndex].end.slice(-2),
+                            "text": results[4],
                             "color": "#555555",
                             "size": "md",
                             "margin": "sm"
@@ -1557,7 +1565,7 @@ const searchKeyword = async (keyword) => {
                         },
                         {
                             "type": "text",
-                            "text": agenda_room[data[r.refIndex].room],
+                            "text": results[5],
                             "color": "#555555",
                             "size": "md",
                             "margin": "sm"
