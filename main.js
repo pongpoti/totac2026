@@ -1423,6 +1423,7 @@ const getOptionAnswer = (options, value) => {
 }
 const searchKeyword = async (keyword) => {
     const { data } = await supabase.from("agenda").select()
+    console.log(data)
     const fuseOptions = {
         isCaseSensitive: false,
         ignoreLocation: true,
