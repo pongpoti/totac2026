@@ -1,0 +1,144 @@
+{
+    "type": "flex",
+    "altText": "ผลการค้นหา",
+    "contents": [
+        {
+            "type": "bubble",
+            "size": "giga",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "height": "15px",
+                        "backgroundColor": "#57a3df"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "height": "2px",
+                        "backgroundColor": "#555555"
+                    }
+                ],
+                "paddingAll": "none"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Name",
+                        "color": "#555555",
+                        "size": "md",
+                        "weight": "bold"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Nattawat Angkavanich",
+                        "size": "md",
+                        "color": "#555555",
+                        "margin": "sm",
+                        "wrap": true
+                    },
+                    {
+                        "type": "text",
+                        "text": "ณัฐวัตร อังควานิช",
+                        "color": "#555555",
+                        "size": "md",
+                        "wrap": true
+                    },
+                    {
+                        "type": "text",
+                        "text": "section",
+                        "color": "#555555",
+                        "size": "md",
+                        "weight": "bold",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "6th Pelvic and Acetabulum Fracture Forum",
+                        "color": "#555555",
+                        "size": "md",
+                        "wrap": true,
+                        "margin": "sm"
+                    },
+                    {
+                        "type": "text",
+                        "text": "topic",
+                        "color": "#555555",
+                        "size": "md",
+                        "weight": "bold",
+                        "margin": "lg",
+                        "decoration": "none"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Case 1 - Pelvic fracture (speaker)",
+                        "color": "#555555",
+                        "size": "md",
+                        "margin": "sm",
+                        "wrap": true
+                    },
+                    {
+                        "type": "text",
+                        "text": "date & time",
+                        "color": "#555555",
+                        "size": "md",
+                        "weight": "bold",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "18 March, 13:15 - 13:45",
+                        "color": "#555555",
+                        "size": "md",
+                        "margin": "sm"
+                    },
+                    {
+                        "type": "text",
+                        "text": "avenue",
+                        "color": "#555555",
+                        "size": "md",
+                        "weight": "bold",
+                        "margin": "lg"
+                    },
+                    {
+                        "type": "text",
+                        "text": "room A",
+                        "color": "#555555",
+                        "size": "md",
+                        "margin": "sm"
+                    }
+                ],
+                "paddingBottom": "xxl"
+            },
+            "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "height": "2px",
+                        "backgroundColor": "#555555"
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [],
+                        "backgroundColor": "#57a3df",
+                        "height": "10px"
+                    }
+                ],
+                "paddingAll": "none"
+            }
+        }
+    ]
+}

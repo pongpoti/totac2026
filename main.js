@@ -157,6 +157,10 @@ const handleEvent = async (event) => {
                 {
                     "type": "text",
                     "text": `Found ${results.length} results`
+                },
+                {
+                    "type": "text",
+                    "text": "Type # followed by the keyword to search. For example: #coffee"
                 }
             ]
         })
