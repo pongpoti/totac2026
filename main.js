@@ -156,9 +156,15 @@ const handleEvent = async (event) => {
     } else if (message.startsWith("#")) {
         const results = await searchKeyword(message.substring(1).trim())
         console.log(results)
+        console.log(JSON.parse(results))
         client.replyMessage({
             "replyToken": event.replyToken,
-            "messages": results
+            "messages": [
+                {
+                    "type": "text",
+                    "text": "บริการนี้ยังไม่เปิดใช้งาน"
+                }
+            ]
         })
     }
 }
@@ -1453,7 +1459,6 @@ const searchKeyword = async (keyword) => {
                 return x
             }
         })
-        console.log(results)
         const object = {
             "type": "flex",
             "altText": "ผลการค้นหา",
