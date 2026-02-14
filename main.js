@@ -155,7 +155,7 @@ const handleEvent = async (event) => {
         })
     } else if (message.startsWith("#")) {
         const results = JSON.stringify(await searchKeyword(message.substring(1).trim()))
-        console.log(results)
+        //console.log(results)
         client.replyMessage({
             "replyToken": event.replyToken,
             "messages": results
@@ -1600,5 +1600,6 @@ const searchKeyword = async (keyword) => {
         "type": "text",
         "text": "Type # followed by the keyword to search. For example: #coffee"
     })
+    console.log(JSON.stringify(return_array))
     return return_array
 }
