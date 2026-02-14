@@ -155,6 +155,7 @@ const handleEvent = async (event) => {
         })
     } else if (message.startsWith("#")) {
         const results = await searchKeyword(message.substring(1).trim())
+        console.log(results)
         client.replyMessage({
             "replyToken": event.replyToken,
             "messages": results
@@ -1423,7 +1424,6 @@ const getOptionAnswer = (options, value) => {
 }
 const searchKeyword = async (keyword) => {
     const { data } = await supabase.from("agenda").select()
-    console.log(data)
     const fuseOptions = {
         isCaseSensitive: false,
         ignoreLocation: true,
@@ -1445,7 +1445,7 @@ const searchKeyword = async (keyword) => {
     ]
     for (const r of search_array) {
         const color = randomColor()
-        let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -2) + " - " + data[r.refIndex].end.slice(0, -2), agenda_room[data[r.refIndex].room]]
+        let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -3) + " - " + data[r.refIndex].end.slice(0, -3), agenda_room[data[r.refIndex].room]]
         results = results.map((x) => {
             if (x === null) {
                 return ""
@@ -1596,7 +1596,6 @@ const searchKeyword = async (keyword) => {
                 }
             }
         }
-        console.log(object.contents.body.contents)
         return_array.push(object)
     }
     return_array.push({
