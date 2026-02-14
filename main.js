@@ -3,8 +3,8 @@ import * as line from "@line/bot-sdk"
 import axios from "axios"
 import { createClient } from "@supabase/supabase-js"
 import fuse from "fuse.js"
-import search_template from "./search_template.json" with { type: "json" }
-
+import randomColor from "randomcolor"
+//
 const app = express()
 const port = process.env.PORT || 3030
 const headers = {
@@ -20,7 +20,10 @@ axios.defaults.headers.post["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMT
 axios.defaults.headers.delete["Content-Type"] = "application/json"
 axios.defaults.headers.delete["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
 const supabase = createClient("https://vwpfuieqetmzjopzhetn.supabase.co", "sb_publishable_neva2oamaffoDv-ChO1wlA_bWlsrlYj")
-
+//
+const agenda_day = ["18 March 2026", "19 March 2026", "20 March 2026"]
+const agenda_room = ["Room A", "Room B", "Room C", "Room D"]
+//
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
@@ -154,17 +157,7 @@ const handleEvent = async (event) => {
         const results = await searchKeyword(message.substring(1).trim())
         client.replyMessage({
             "replyToken": event.replyToken,
-            "messages": [
-                {
-                    "type": "text",
-                    "text": `Found ${results.length} results`
-                },
-                search_template,
-                {
-                    "type": "text",
-                    "text": "Type # followed by the keyword to search. For example: #coffee"
-                }
-            ]
+            "messages": results
         })
     }
 }
@@ -1443,5 +1436,161 @@ const searchKeyword = async (keyword) => {
     }
     const search_array = (new fuse(data, fuseOptions)).search(keyword)
     console.log(search_array)
-    return search_array
+    let return_array = [
+        {
+            "type": "text",
+            "text": "Found " + search_array.length + " results"
+        }
+    ]
+    for (const r of search_array) {
+        const color = randomColor()
+        const object = {
+            "type": "flex",
+            "altText": "ผลการค้นหา",
+            "contents": {
+                "type": "bubble",
+                "size": "giga",
+                "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "height": "15px",
+                            "backgroundColor": color
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "height": "2px",
+                            "backgroundColor": "#555555"
+                        }
+                    ],
+                    "paddingAll": "none"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "Name",
+                            "color": "#555555",
+                            "size": "md",
+                            "weight": "bold"
+                        },
+                        {
+                            "type": "text",
+                            "text": data[r.refIndex].name_en,
+                            "size": "md",
+                            "color": "#555555",
+                            "margin": "sm",
+                            "wrap": true
+                        },
+                        {
+                            "type": "text",
+                            "text": data[r.refIndex].name_th,
+                            "color": "#555555",
+                            "size": "md",
+                            "wrap": true
+                        },
+                        {
+                            "type": "text",
+                            "text": "section",
+                            "color": "#555555",
+                            "size": "md",
+                            "weight": "bold",
+                            "margin": "lg"
+                        },
+                        {
+                            "type": "text",
+                            "text": data[r.refIndex].section,
+                            "color": "#555555",
+                            "size": "md",
+                            "wrap": true,
+                            "margin": "sm"
+                        },
+                        {
+                            "type": "text",
+                            "text": "topic",
+                            "color": "#555555",
+                            "size": "md",
+                            "weight": "bold",
+                            "margin": "lg",
+                            "decoration": "none"
+                        },
+                        {
+                            "type": "text",
+                            "text": data[r.refIndex].topic,
+                            "color": "#555555",
+                            "size": "md",
+                            "margin": "sm",
+                            "wrap": true
+                        },
+                        {
+                            "type": "text",
+                            "text": "date & time",
+                            "color": "#555555",
+                            "size": "md",
+                            "weight": "bold",
+                            "margin": "lg"
+                        },
+                        {
+                            "type": "text",
+                            "text": agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(-2) + " - " + data[r.refIndex].end.slice(-2),
+                            "color": "#555555",
+                            "size": "md",
+                            "margin": "sm"
+                        },
+                        {
+                            "type": "text",
+                            "text": "avenue",
+                            "color": "#555555",
+                            "size": "md",
+                            "weight": "bold",
+                            "margin": "lg"
+                        },
+                        {
+                            "type": "text",
+                            "text": agenda_room[data[r.refIndex].room],
+                            "color": "#555555",
+                            "size": "md",
+                            "margin": "sm"
+                        }
+                    ],
+                    "paddingBottom": "xxl"
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "height": "2px",
+                            "backgroundColor": "#555555"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [],
+                            "backgroundColor": color,
+                            "height": "10px"
+                        }
+                    ],
+                    "paddingAll": "none"
+                }
+            }
+        }
+        return_array.push(object)
+    }
+    return_array.push({
+        "type": "text",
+        "text": "Type # followed by the keyword to search. For example: #coffee"
+    })
+    return return_array
 }
