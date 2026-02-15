@@ -1597,7 +1597,7 @@ const searchKeyword = async (keyword) => {
         "altText": "ผลการค้นหา",
         "contents": {
             "type": "bubble",
-            "size": "kilo",
+            "size": "giga",
             "body": {
                 "type": "box",
                 "layout": "vertical",
