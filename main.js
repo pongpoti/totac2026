@@ -1575,7 +1575,8 @@ const searchKeyword = async (keyword) => {
                     "backgroundColor": color,
                     "margin": "xxl"
                 }
-            ]
+            ],
+            "paddingEnd": "xl"
         }
         object_array.push(object_sub)
     }
