@@ -1606,6 +1606,7 @@ const searchKeyword = async (keyword) => {
         "text": "Type # followed by the keyword to search. For example: #coffee"
     })
     console.log(return_array)
+    const a = 1
     console.log(JSON.stringify(return_array))
     return return_array
 }
