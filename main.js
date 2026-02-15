@@ -1486,7 +1486,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "margin": "sm",
                     "wrap": true,
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "offsetEnd": "xxl"
                 },
                 {
                     "type": "text",
@@ -1494,7 +1495,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "wrap": true,
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "offsetEnd": "xxl"
                 },
                 {
                     "type": "text",
@@ -1512,7 +1514,8 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "wrap": true,
                     "margin": "sm",
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "offsetEnd": "xxl"
                 },
                 {
                     "type": "text",
@@ -1531,7 +1534,8 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "wrap": true,
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "offsetEnd": "xxl"
                 },
                 {
                     "type": "text",
@@ -1548,7 +1552,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "offsetEnd": "xxl"
                 },
                 {
                     "type": "text",
@@ -1565,14 +1570,15 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl"
+                    "offsetStart": "xxl",
+                    "offsetEnd": "xxl"
                 },
                 {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [],
                     "height": "12px",
-                    "backgroundColor": "#57a3df",
+                    "backgroundColor": color,
                     "margin": "xxl"
                 }
             ]
@@ -1591,7 +1597,7 @@ const searchKeyword = async (keyword) => {
         "altText": "ผลการค้นหา",
         "contents": {
             "type": "bubble",
-            "size": "giga",
+            "size": "kilo",
             "body": {
                 "type": "box",
                 "layout": "vertical",
@@ -1605,8 +1611,5 @@ const searchKeyword = async (keyword) => {
         "type": "text",
         "text": "Type # followed by the keyword to search. For example: #coffee"
     })
-    console.log(return_array)
-    const a = 1
-    console.log(JSON.stringify(return_array))
     return return_array
 }
