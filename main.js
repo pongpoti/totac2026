@@ -1476,7 +1476,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "weight": "bold",
-                    "margin": "xl"
+                    "margin": "xl",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1484,14 +1485,14 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "color": "#555555",
                     "margin": "sm",
-                    "offsetStart": "md",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
                     "text": results[1],
                     "color": "#555555",
                     "size": "md",
-                    "offsetStart": "md",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1501,6 +1502,7 @@ const searchKeyword = async (keyword) => {
                     "weight": "bold",
                     "margin": "lg",
                     "wrap": true,
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1509,7 +1511,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "wrap": true,
                     "margin": "sm",
-                    "offsetStart": "md",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1519,6 +1521,7 @@ const searchKeyword = async (keyword) => {
                     "weight": "bold",
                     "margin": "lg",
                     "wrap": true,
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1527,7 +1530,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "wrap": true,
-                    "offsetStart": "md",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1536,6 +1539,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1543,7 +1547,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "md",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1552,6 +1556,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "text",
@@ -1559,7 +1564,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "md",
+                    "offsetStart": "xl",
                 },
                 {
                     "type": "box",
