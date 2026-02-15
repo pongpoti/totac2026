@@ -1484,14 +1484,14 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "color": "#555555",
                     "margin": "sm",
-                    "offsetStart": "xxl",
+                    "offsetStart": "md",
                 },
                 {
                     "type": "text",
                     "text": results[1],
                     "color": "#555555",
                     "size": "md",
-                    "offsetStart": "xxl",
+                    "offsetStart": "md",
                 },
                 {
                     "type": "text",
@@ -1508,7 +1508,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "wrap": true,
                     "margin": "sm",
-                    "offsetStart": "xxl",
+                    "offsetStart": "md",
                     "maxLines": 3
                 },
                 {
@@ -1527,7 +1527,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "wrap": true,
-                    "offsetStart": "xxl",
+                    "offsetStart": "md",
                     "maxLines": 3
                 },
                 {
@@ -1544,7 +1544,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl",
+                    "offsetStart": "md",
                 },
                 {
                     "type": "text",
@@ -1560,7 +1560,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl",
+                    "offsetStart": "md",
                 },
                 {
                     "type": "box",
@@ -1588,7 +1588,7 @@ const searchKeyword = async (keyword) => {
         "altText": "ผลการค้นหา",
         "contents": {
             "type": "bubble",
-            "size": "mega",
+            "size": "giga",
             "body": {
                 "type": "box",
                 "layout": "vertical",
