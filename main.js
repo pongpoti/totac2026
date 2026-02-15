@@ -1500,6 +1500,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
+                    "wrap": true,
                 },
                 {
                     "type": "text",
@@ -1509,7 +1510,6 @@ const searchKeyword = async (keyword) => {
                     "wrap": true,
                     "margin": "sm",
                     "offsetStart": "md",
-                    "maxLines": 3
                 },
                 {
                     "type": "text",
@@ -1518,7 +1518,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "decoration": "none",
+                    "wrap": true,
                 },
                 {
                     "type": "text",
@@ -1528,7 +1528,6 @@ const searchKeyword = async (keyword) => {
                     "margin": "sm",
                     "wrap": true,
                     "offsetStart": "md",
-                    "maxLines": 3
                 },
                 {
                     "type": "text",
