@@ -1441,6 +1441,7 @@ const searchKeyword = async (keyword) => {
             "text": "Found " + search_array.length + " results"
         }
     ]
+    let object_array = []
     for (const r of search_array) {
         const color = randomColor()
         let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -3) + " - " + data[r.refIndex].end.slice(0, -3), agenda_room[data[r.refIndex].room]]
@@ -1451,150 +1452,155 @@ const searchKeyword = async (keyword) => {
                 return x
             }
         })
-        const object = {
-            "type": "flex",
-            "altText": "ผลการค้นหา",
-            "contents": {
-                "type": "bubble",
-                "size": "giga",
-                "header": {
+        const object_sub = {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
                     "type": "box",
                     "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "height": "15px",
-                            "backgroundColor": color
-                        },
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "height": "2px",
-                            "backgroundColor": "#555555"
-                        }
-                    ],
-                    "paddingAll": "none"
+                    "contents": [],
+                    "height": "4px",
+                    "backgroundColor": "#555555"
                 },
-                "body": {
+                {
                     "type": "box",
                     "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "Name",
-                            "color": "#555555",
-                            "size": "md",
-                            "weight": "bold"
-                        },
-                        {
-                            "type": "text",
-                            "text": results[0],
-                            "size": "md",
-                            "color": "#555555",
-                            "margin": "sm",
-                            "wrap": true
-                        },
-                        {
-                            "type": "text",
-                            "text": results[1],
-                            "color": "#555555",
-                            "size": "md",
-                            "wrap": true
-                        },
-                        {
-                            "type": "text",
-                            "text": "section",
-                            "color": "#555555",
-                            "size": "md",
-                            "weight": "bold",
-                            "margin": "lg"
-                        },
-                        {
-                            "type": "text",
-                            "text": results[2],
-                            "color": "#555555",
-                            "size": "md",
-                            "wrap": true,
-                            "margin": "sm"
-                        },
-                        {
-                            "type": "text",
-                            "text": "topic",
-                            "color": "#555555",
-                            "size": "md",
-                            "weight": "bold",
-                            "margin": "lg",
-                            "decoration": "none"
-                        },
-                        {
-                            "type": "text",
-                            "text": results[3],
-                            "color": "#555555",
-                            "size": "md",
-                            "margin": "sm",
-                            "wrap": true
-                        },
-                        {
-                            "type": "text",
-                            "text": "date & time",
-                            "color": "#555555",
-                            "size": "md",
-                            "weight": "bold",
-                            "margin": "lg"
-                        },
-                        {
-                            "type": "text",
-                            "text": results[4],
-                            "color": "#555555",
-                            "size": "md",
-                            "margin": "sm"
-                        },
-                        {
-                            "type": "text",
-                            "text": "avenue",
-                            "color": "#555555",
-                            "size": "md",
-                            "weight": "bold",
-                            "margin": "lg"
-                        },
-                        {
-                            "type": "text",
-                            "text": results[5],
-                            "color": "#555555",
-                            "size": "md",
-                            "margin": "sm"
-                        }
-                    ],
-                    "paddingBottom": "xxl"
+                    "contents": [],
+                    "height": "12px",
+                    "backgroundColor": color
                 },
-                "footer": {
+                {
+                    "type": "text",
+                    "text": "Name",
+                    "color": "#555555",
+                    "size": "md",
+                    "weight": "bold",
+                    "offsetStart": "xl",
+                    "margin": "xl"
+                },
+                {
+                    "type": "text",
+                    "text": results[0],
+                    "size": "md",
+                    "color": "#555555",
+                    "margin": "sm",
+                    "wrap": true,
+                    "offsetStart": "xxl"
+                },
+                {
+                    "type": "text",
+                    "text": results[1],
+                    "color": "#555555",
+                    "size": "md",
+                    "wrap": true,
+                    "offsetStart": "xxl"
+                },
+                {
+                    "type": "text",
+                    "text": "section",
+                    "color": "#555555",
+                    "size": "md",
+                    "weight": "bold",
+                    "margin": "lg",
+                    "offsetStart": "xl"
+                },
+                {
+                    "type": "text",
+                    "text": results[2],
+                    "color": "#555555",
+                    "size": "md",
+                    "wrap": true,
+                    "margin": "sm",
+                    "offsetStart": "xxl"
+                },
+                {
+                    "type": "text",
+                    "text": "topic",
+                    "color": "#555555",
+                    "size": "md",
+                    "weight": "bold",
+                    "margin": "lg",
+                    "decoration": "none",
+                    "offsetStart": "xl"
+                },
+                {
+                    "type": "text",
+                    "text": results[3],
+                    "color": "#555555",
+                    "size": "md",
+                    "margin": "sm",
+                    "wrap": true,
+                    "offsetStart": "xxl"
+                },
+                {
+                    "type": "text",
+                    "text": "date & time",
+                    "color": "#555555",
+                    "size": "md",
+                    "weight": "bold",
+                    "margin": "lg",
+                    "offsetStart": "xl"
+                },
+                {
+                    "type": "text",
+                    "text": results[4],
+                    "color": "#555555",
+                    "size": "md",
+                    "margin": "sm",
+                    "offsetStart": "xxl"
+                },
+                {
+                    "type": "text",
+                    "text": "avenue",
+                    "color": "#555555",
+                    "size": "md",
+                    "weight": "bold",
+                    "margin": "lg",
+                    "offsetStart": "xl"
+                },
+                {
+                    "type": "text",
+                    "text": results[5],
+                    "color": "#555555",
+                    "size": "md",
+                    "margin": "sm",
+                    "offsetStart": "xxl"
+                },
+                {
                     "type": "box",
                     "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "height": "2px",
-                            "backgroundColor": "#555555"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [],
-                            "backgroundColor": color,
-                            "height": "10px"
-                        }
-                    ],
-                    "paddingAll": "none"
+                    "contents": [],
+                    "height": "12px",
+                    "backgroundColor": "#57a3df",
+                    "margin": "xxl"
                 }
+            ]
+        }
+        object_array.push(object_sub)
+    }
+    object_array.push({
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "height": "4px",
+        "backgroundColor": "#555555"
+    })
+    const object_main = {
+        "type": "flex",
+        "altText": "ผลการค้นหา",
+        "contents": {
+            "type": "bubble",
+            "size": "giga",
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": object_array,
+                "paddingAll": "none"
             }
         }
-        return_array.push(object)
     }
+    return_array.push(object_main)
     return_array.push({
         "type": "text",
         "text": "Type # followed by the keyword to search. For example: #coffee"
