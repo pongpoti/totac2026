@@ -1576,7 +1576,7 @@ const searchKeyword = async (keyword) => {
                     "margin": "xxl"
                 }
             ],
-            "paddingEnd": "xl"
+            "offsetEnd": "xl"
         }
         object_array.push(object_sub)
     }
