@@ -1570,9 +1570,7 @@ const searchKeyword = async (keyword) => {
                     "backgroundColor": color,
                     "margin": "xxl"
                 }
-            ],
-            "paddingStart": "xl",
-            "offsetEnd": "xl"
+            ]
         }
         object_array.push(object_sub)
     }
@@ -1593,7 +1591,8 @@ const searchKeyword = async (keyword) => {
                 "type": "box",
                 "layout": "vertical",
                 "contents": object_array,
-                "paddingAll": "none"
+                "paddingTop": "none",
+                "paddingBottom": "none",
             }
         }
     }
