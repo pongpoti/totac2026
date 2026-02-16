@@ -1498,7 +1498,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": "( " + results[2] + " )",
+                    "text": "(" + results[2] + ")",
                     "color": "#555555",
                     "size": "md",
                     "wrap": true,
@@ -1522,6 +1522,7 @@ const searchKeyword = async (keyword) => {
                     "wrap": true,
                     "margin": "sm",
                     "offsetStart": "xl",
+                    "flex": 1
                 },
                 {
                     "type": "text",
