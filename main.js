@@ -1615,5 +1615,6 @@ const searchKeyword = async (keyword) => {
         "type": "text",
         "text": "Type # followed by the keyword to search. For example: #coffee"
     })
+    const a = 0
     return return_array
 }
