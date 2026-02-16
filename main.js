@@ -1456,6 +1456,7 @@ const searchKeyword = async (keyword) => {
                 }
             }
         })
+        console.log(results)
         const object_sub = {
             "type": "box",
             "layout": "vertical",
