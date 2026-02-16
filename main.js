@@ -1522,7 +1522,7 @@ const searchKeyword = async (keyword) => {
                     "wrap": true,
                     "margin": "sm",
                     "offsetStart": "xl",
-                    "flex": 1
+                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1608,6 +1608,7 @@ const searchKeyword = async (keyword) => {
                 "contents": object_array,
                 "paddingTop": "none",
                 "paddingBottom": "none",
+                "paddingStart": "none",
                 "offsetEnd": "md"
             }
         }
