@@ -1514,9 +1514,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "wrap": true,
-                    "scaling": true,
-                    "adjustMode": "shrink-to-fit",
                     "offsetStart": "xxl",
                 },
                 {
@@ -1524,10 +1521,12 @@ const searchKeyword = async (keyword) => {
                     "text": results[3],
                     "color": "#555555",
                     "size": "md",
-                    "wrap": true,
                     "margin": "sm",
+                    "flex": 0,
+                    "wrap": true,
+                    "scaling": true,
+                    "adjustMode": "shrink-to-fit",
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1545,9 +1544,11 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
+                    "flex": 0,
                     "wrap": true,
+                    "scaling": true,
+                    "adjustMode": "shrink-to-fit",
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "text",
