@@ -1608,7 +1608,8 @@ const searchKeyword = async (keyword) => {
                 "paddingTop": "none",
                 "paddingBottom": "none",
                 "paddingStart": "sm",
-                "paddingEnd": "sm"
+                "paddingEnd": "sm",
+                "offsetEnd": "md"
             }
         }
     }
