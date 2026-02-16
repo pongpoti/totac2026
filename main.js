@@ -1540,7 +1540,7 @@ const searchKeyword = async (keyword) => {
                     "offsetStart": "xxl",
                     "maxLines": 3,
                     "wrap": true,
-                    "flex": 8
+                    "flex": 0
                 },
                 {
                     "type": "text",
@@ -1600,7 +1600,7 @@ const searchKeyword = async (keyword) => {
         "altText": "ผลการค้นหา",
         "contents": {
             "type": "bubble",
-            "size": "mega",
+            "size": "giga",
             "body": {
                 "type": "box",
                 "layout": "vertical",
