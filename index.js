@@ -1601,7 +1601,8 @@ const searchKeyword = async (keyword) => {
                 "type": "box",
                 "layout": "vertical",
                 "contents": object_array,
-                "paddingAll": "none"
+                "paddingAll": "none",
+                "backgroundColor": "#f5f5f5"
             }
         }
     }
