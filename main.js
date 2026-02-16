@@ -1607,9 +1607,7 @@ const searchKeyword = async (keyword) => {
                 "contents": object_array,
                 "paddingTop": "none",
                 "paddingBottom": "none",
-                "paddingStart": "sm",
-                "paddingEnd": "sm",
-                "offsetEnd": "md"
+                "offsetEnd": "xl"
             }
         }
     }
