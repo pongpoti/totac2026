@@ -1519,10 +1519,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "flex": 0,
                     "wrap": true,
-                    "scaling": true,
-                    "adjustMode": "shrink-to-fit",
                     "offsetStart": "xxl",
                 },
                 {
@@ -1540,10 +1537,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "flex": 0,
                     "wrap": true,
-                    "scaling": true,
-                    "adjustMode": "shrink-to-fit",
                     "offsetStart": "xxl",
                 },
                 {
