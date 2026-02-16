@@ -1473,7 +1473,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": "Name",
+                    "text": "\tName",
                     "color": "#555555",
                     "size": "md",
                     "weight": "bold",
@@ -1581,7 +1581,7 @@ const searchKeyword = async (keyword) => {
         "contents": [],
         "height": "4px",
         "backgroundColor": "#555555",
-        "paddingStart": "xl",
+        "offsetStart": "xl",
     })
     const object_main = {
         "type": "flex",
@@ -1593,10 +1593,7 @@ const searchKeyword = async (keyword) => {
                 "type": "box",
                 "layout": "vertical",
                 "contents": object_array,
-                "paddingTop": "none",
-                "paddingBottom": "none",
-                "paddingStart": "none",
-                "paddingEnd": "none"
+                "paddingAll": "none"
             }
         }
     }
