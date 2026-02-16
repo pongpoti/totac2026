@@ -1473,7 +1473,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": "\tName",
+                    "text": "Name",
                     "color": "#555555",
                     "size": "md",
                     "weight": "bold",
