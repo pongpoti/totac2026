@@ -1455,6 +1455,7 @@ const searchKeyword = async (keyword) => {
         const object_sub = {
             "type": "box",
             "layout": "vertical",
+            "paddingStart": "xl",
             "contents": [
                 {
                     "type": "box",
@@ -1477,7 +1478,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "xl",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1485,7 +1485,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "color": "#555555",
                     "margin": "sm",
-                    "offsetStart": "xxl",
                     "wrap": true
                 },
                 {
@@ -1493,7 +1492,6 @@ const searchKeyword = async (keyword) => {
                     "text": results[1],
                     "color": "#555555",
                     "size": "md",
-                    "offsetStart": "xxl",
                     "wrap": true
                 },
                 {
@@ -1501,7 +1499,6 @@ const searchKeyword = async (keyword) => {
                     "text": "(" + results[2] + ")",
                     "color": "#555555",
                     "size": "md",
-                    "offsetStart": "xxl",
                     "wrap": true
                 },
                 {
@@ -1511,7 +1508,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1519,7 +1515,6 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl",
                     "wrap": true
                 },
                 {
@@ -1529,7 +1524,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1537,7 +1531,6 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl",
                     "wrap": true,
                 },
                 {
@@ -1547,7 +1540,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1555,7 +1547,6 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1564,7 +1555,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1572,7 +1562,6 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xxl",
                 },
                 {
                     "type": "box",
