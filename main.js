@@ -1606,7 +1606,7 @@ const searchKeyword = async (keyword) => {
                 "paddingTop": "none",
                 "paddingBottom": "none",
                 "paddingStart": "none",
-                "offsetEnd": "sm"
+                "paddingEnd": "none"
             }
         }
     }
