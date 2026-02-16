@@ -1487,7 +1487,6 @@ const searchKeyword = async (keyword) => {
                     "margin": "sm",
                     "wrap": true,
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1496,7 +1495,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "wrap": true,
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1505,7 +1503,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "wrap": true,
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1535,7 +1532,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "wrap": true,
                     "offsetStart": "xxl",
                 },
                 {
@@ -1566,7 +1562,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1584,7 +1579,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "offsetStart": "xxl",
-                    "flex": 2
                 },
                 {
                     "type": "box",
