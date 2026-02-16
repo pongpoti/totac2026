@@ -1538,7 +1538,9 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "offsetStart": "xxl",
-                    "wrap": true
+                    "wrap": true,
+                    "flex-shrink": 1,
+                    "min-width": "0px"
                 },
                 {
                     "type": "text",
