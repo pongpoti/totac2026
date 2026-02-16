@@ -1515,6 +1515,8 @@ const searchKeyword = async (keyword) => {
                     "weight": "bold",
                     "margin": "lg",
                     "wrap": true,
+                    "scaling": true,
+                    "adjustMode": "shrink-to-fit",
                     "offsetStart": "xxl",
                 },
                 {
