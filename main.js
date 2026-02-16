@@ -1580,7 +1580,8 @@ const searchKeyword = async (keyword) => {
         "layout": "vertical",
         "contents": [],
         "height": "4px",
-        "backgroundColor": "#555555"
+        "backgroundColor": "#555555",
+        "paddingStart": "xl",
     })
     const object_main = {
         "type": "flex",
