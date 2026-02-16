@@ -1449,7 +1449,11 @@ const searchKeyword = async (keyword) => {
             if (x === null) {
                 return "-"
             } else {
-                return x
+                if (x.length > 30) {
+                    return x.slice(0, 30) + "\n" + x.slice(30)
+                } else {
+                    return x
+                }
             }
         })
         const object_sub = {
@@ -1485,7 +1489,6 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "color": "#555555",
                     "margin": "sm",
-                    "wrap": true,
                     "offsetStart": "xxl",
                 },
                 {
@@ -1493,7 +1496,6 @@ const searchKeyword = async (keyword) => {
                     "text": results[1],
                     "color": "#555555",
                     "size": "md",
-                    "wrap": true,
                     "offsetStart": "xxl",
                 },
                 {
@@ -1501,7 +1503,6 @@ const searchKeyword = async (keyword) => {
                     "text": "(" + results[2] + ")",
                     "color": "#555555",
                     "size": "md",
-                    "wrap": true,
                     "offsetStart": "xxl",
                 },
                 {
@@ -1519,7 +1520,6 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "wrap": true,
                     "offsetStart": "xxl",
                 },
                 {
@@ -1537,7 +1537,6 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "wrap": true,
                     "offsetStart": "xxl",
                 },
                 {
