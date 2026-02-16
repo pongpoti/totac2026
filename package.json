@@ -7,5 +7,6 @@
     "fuse.js": "^7.1.0",
     "randomcolor": "^0.6.2"
   },
-  "type": "module"
+  "type": "module",
+  "start": "node main.js"
 }
