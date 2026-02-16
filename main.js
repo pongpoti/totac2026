@@ -1444,7 +1444,7 @@ const searchKeyword = async (keyword) => {
     let object_array = []
     for (const r of search_array) {
         const color = randomColor()
-        let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -3) + " - " + data[r.refIndex].end.slice(0, -3), agenda_room[data[r.refIndex].room]]
+        let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].type, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -3) + " - " + data[r.refIndex].end.slice(0, -3), agenda_room[data[r.refIndex].room]]
         results = results.map((x) => {
             if (x === null) {
                 return "-"
@@ -1485,6 +1485,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "color": "#555555",
                     "margin": "sm",
+                    "wrap": true,
                     "offsetStart": "xl",
                 },
                 {
@@ -1492,6 +1493,15 @@ const searchKeyword = async (keyword) => {
                     "text": results[1],
                     "color": "#555555",
                     "size": "md",
+                    "wrap": true,
+                    "offsetStart": "xl",
+                },
+                {
+                    "type": "text",
+                    "text": "( " + results[2] + " )",
+                    "color": "#555555",
+                    "size": "md",
+                    "wrap": true,
                     "offsetStart": "xl",
                 },
                 {
@@ -1506,7 +1516,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": results[2],
+                    "text": results[3],
                     "color": "#555555",
                     "size": "md",
                     "wrap": true,
@@ -1525,7 +1535,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": results[3],
+                    "text": results[4],
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
@@ -1543,7 +1553,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": results[4],
+                    "text": results[5],
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
@@ -1560,7 +1570,7 @@ const searchKeyword = async (keyword) => {
                 },
                 {
                     "type": "text",
-                    "text": results[5],
+                    "text": results[6],
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
