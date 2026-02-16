@@ -1540,7 +1540,7 @@ const searchKeyword = async (keyword) => {
                     "offsetStart": "xxl",
                     "maxLines": 3,
                     "wrap": true,
-                    "flex": 10
+                    "flex": 8
                 },
                 {
                     "type": "text",
