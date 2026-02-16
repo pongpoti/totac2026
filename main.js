@@ -1477,7 +1477,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "xl",
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1486,7 +1486,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "margin": "sm",
                     "wrap": true,
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
+                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1494,7 +1495,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "wrap": true,
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
+                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1502,7 +1504,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "wrap": true,
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
+                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1512,7 +1515,7 @@ const searchKeyword = async (keyword) => {
                     "weight": "bold",
                     "margin": "lg",
                     "wrap": true,
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1521,7 +1524,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "wrap": true,
                     "margin": "sm",
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
                     "flex": 2
                 },
                 {
@@ -1532,7 +1535,7 @@ const searchKeyword = async (keyword) => {
                     "weight": "bold",
                     "margin": "lg",
                     "wrap": true,
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1541,7 +1544,8 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "wrap": true,
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
+                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1550,7 +1554,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1558,7 +1562,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
+                    "flex": 2
                 },
                 {
                     "type": "text",
@@ -1567,7 +1572,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "weight": "bold",
                     "margin": "lg",
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
                 },
                 {
                     "type": "text",
@@ -1575,7 +1580,8 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "margin": "sm",
-                    "offsetStart": "xl",
+                    "offsetStart": "xxl",
+                    "flex": 2
                 },
                 {
                     "type": "box",
@@ -1609,7 +1615,7 @@ const searchKeyword = async (keyword) => {
                 "paddingTop": "none",
                 "paddingBottom": "none",
                 "paddingStart": "none",
-                "offsetEnd": "md"
+                "offsetEnd": "sm"
             }
         }
     }
