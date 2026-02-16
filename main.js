@@ -1449,14 +1449,9 @@ const searchKeyword = async (keyword) => {
             if (x === null) {
                 return "-"
             } else {
-                if (x.length > 30) {
-                    return x.slice(0, 30) + "\n" + x.slice(30)
-                } else {
-                    return x
-                }
+                return x
             }
         })
-        console.log(results)
         const object_sub = {
             "type": "box",
             "layout": "vertical",
@@ -1472,7 +1467,7 @@ const searchKeyword = async (keyword) => {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [],
-                    "height": "12px",
+                    "height": "10px",
                     "backgroundColor": color
                 },
                 {
@@ -1491,6 +1486,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "margin": "sm",
                     "offsetStart": "xxl",
+                    "wrap": true
                 },
                 {
                     "type": "text",
@@ -1498,6 +1494,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "offsetStart": "xxl",
+                    "wrap": true
                 },
                 {
                     "type": "text",
@@ -1505,6 +1502,7 @@ const searchKeyword = async (keyword) => {
                     "color": "#555555",
                     "size": "md",
                     "offsetStart": "xxl",
+                    "wrap": true
                 },
                 {
                     "type": "text",
@@ -1522,6 +1520,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "offsetStart": "xxl",
+                    "wrap": true
                 },
                 {
                     "type": "text",
@@ -1539,6 +1538,7 @@ const searchKeyword = async (keyword) => {
                     "size": "md",
                     "margin": "sm",
                     "offsetStart": "xxl",
+                    "wrap": true
                 },
                 {
                     "type": "text",
@@ -1578,7 +1578,7 @@ const searchKeyword = async (keyword) => {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [],
-                    "height": "12px",
+                    "height": "10px",
                     "backgroundColor": color,
                     "margin": "xxl"
                 }
