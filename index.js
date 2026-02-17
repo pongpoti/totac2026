@@ -30,6 +30,7 @@ app.listen(port, () => {
 
 app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
+app.use("/agenda", express.static("agenda"))
 
 app.get("/test", async (_, res) => {
     try {
