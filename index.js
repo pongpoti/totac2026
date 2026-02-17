@@ -140,8 +140,27 @@ const handleEvent = async (event) => {
             "replyToken": event.replyToken,
             "messages": [
                 {
-                    "type": "text",
-                    "text": "บริการนี้ยังไม่เปิดใช้งาน"
+                    "type": "flex",
+                    "altText": "วิธีการค้นหา",
+                    "contents": {
+                        "type": "bubble",
+                        "size": "giga",
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "image",
+                                    "url": "https://dolphin-app-a5itu.ondigitalocean.app/src/search.png",
+                                    "size": "full",
+                                    "aspectMode": "fit",
+                                    "aspectRatio": "1:1",
+                                    "gravity": "center"
+                                }
+                            ],
+                            "paddingAll": "0px"
+                        }
+                    }
                 }
             ]
         })
