@@ -43,7 +43,7 @@ app.get("/test", async (_, res) => {
 })
 app.get("/letter/init", (_, res) => {
     form().then((id) => {
-        res.redirect("https://totac2026.pongpoti.deno.net/letter/activate?id=" + id)
+        res.redirect("https://dolphin-app-a5itu.ondigitalocean.app/letter/activate?id=" + id)
     }).catch((error) => {
         console.error(error)
         res.sendStatus(500)
