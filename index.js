@@ -1603,7 +1603,7 @@ const searchKeyword = async (keyword) => {
                 "layout": "vertical",
                 "contents": object_array,
                 "paddingAll": "none",
-                "backgroundColor": "#f5f5f5"
+                "backgroundColor": "#fafafa"
             }
         }
     }
