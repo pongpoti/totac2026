@@ -1447,7 +1447,7 @@ const searchKeyword = async (keyword) => {
     const fuseOptions = {
         isCaseSensitive: false,
         ignoreLocation: true,
-        threshold: 0.2,
+        threshold: 0.6,
         keys: [
             "section",
             "topic",
@@ -1456,6 +1456,7 @@ const searchKeyword = async (keyword) => {
         ]
     }
     const search_array = (new fuse(data, fuseOptions)).search(keyword)
+    console.log(search_array)
     let return_array = [
         {
             "type": "text",
