@@ -1447,7 +1447,7 @@ const searchKeyword = async (keyword) => {
     const fuseOptions = {
         isCaseSensitive: false,
         ignoreLocation: true,
-        threshold: 0.6,
+        threshold: 0.2,
         keys: [
             "section",
             "topic",
@@ -1468,12 +1468,13 @@ const searchKeyword = async (keyword) => {
         const color = randomColor()
         let results = [data[r.refIndex].name_en, data[r.refIndex].name_th, data[r.refIndex].type, data[r.refIndex].section, data[r.refIndex].topic, agenda_day[data[r.refIndex].day] + ", " + data[r.refIndex].start.slice(0, -3) + " - " + data[r.refIndex].end.slice(0, -3), agenda_room[data[r.refIndex].room]]
         results = results.map((x) => {
-            if (x === null) {
+            if (x === null || x === undefined || x === "") {
                 return "-"
             } else {
                 return x
             }
         })
+        console.log(results)
         const object_sub = {
             "type": "box",
             "layout": "vertical",
