@@ -1421,7 +1421,7 @@ const addWebhook = async (id) => {
     try {
         await axios.post("https://api.tally.so/webhooks", {
             formId: id,
-            url: "https://totac2026.pongpoti.deno.net/callback?id=" + id,
+            url: "https://dolphin-app-a5itu.ondigitalocean.app/callback?id=" + id,
             eventTypes: ["FORM_RESPONSE"]
         })
     } catch (error) {
