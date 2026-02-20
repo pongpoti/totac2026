@@ -1100,7 +1100,7 @@ const createForm = async () => {
                 redirectOnCompletion: {
                     safeHTMLSchema: [
                         [
-                            "https://totac2026.pongpoti.deno.net/submit"
+                            "https://dolphin-app-a5itu.ondigitalocean.app/submit"
                         ]
                     ],
                     mentions: []
