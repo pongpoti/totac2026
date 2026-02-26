@@ -1456,7 +1456,6 @@ const searchKeyword = async (keyword) => {
         ]
     }
     const search_array = (new fuse(data, fuseOptions)).search(keyword)
-    console.log(search_array)
     let return_array = [
         {
             "type": "text",
@@ -1474,7 +1473,6 @@ const searchKeyword = async (keyword) => {
                 return x
             }
         })
-        console.log(results)
         const object_sub = {
             "type": "box",
             "layout": "vertical",
