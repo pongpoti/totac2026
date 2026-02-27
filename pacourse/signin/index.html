@@ -15,13 +15,10 @@
         async function signIn() {
             const { data, error } = await _supabase.auth.signInWithOAuth({
                 provider: "google",
-                options: {
-                    redirectTo: "https://dolphin-app-a5itu.ondigitalocean.app/pacourse/auth"
-                }
             })
-            console.log(data)
-            if (error) {
-                console.error("Error signing in:", error)
+            if (data.session) {
+                const jwt = data.session.access_token;
+                console.log('User JWT:', jwt);
             }
         }
         signIn()
