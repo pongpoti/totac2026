@@ -33,7 +33,24 @@ app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 app.use("/agenda", express.static("agenda"))
 app.use("/src", express.static("src"))
-app.use("/pacourse/signin", express.static("pacourse/signin"))
+//app.use("/pacourse/signin", express.static("pacourse/signin"))
+
+app.get("/pacourse/signin", async (_, res) => {
+    const sup = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
+    const { data, error } = await sup.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+            redirectTo: "https://dolphin-app-a5itu.ondigitalocean.app/pacourse/auth"
+        }
+    })
+    if (data.session) {
+        const jwt = data.session.access_token
+        console.log("JWT:", jwt)
+    }
+    if (data.url) {
+        res.redirect(data.url)
+    }
+})
 
 app.get("/pacourse/auth", async (req, res) => {
     console.log("Received auth request")
