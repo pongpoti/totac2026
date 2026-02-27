@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+    <style>
+        iframe {
+            width: 100vw height: 90vh display: block border: none overflow: hidden
+        }
+    </style>
+</head>
+
+<body>
+    <div class="drawer">
+        <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+            <div id="player"></div>
+
+        </div>
+        <div class="drawer-side">
+            <label for="my-drawer-1" aria-label="close sidebar" class="drawer-overlay"></label>
+            <ul class="menu bg-base-200 min-h-full w-80 p-4">
+                <li><button class="btn btn-ghost btn-active font-normal">Sidebar Item 1</button></li>
+                <li><button class="btn btn-ghost btn-disabled">Sidebar Item 2</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dock border-none">
+        <label for="my-drawer-1" class="btn drawer-button">Open drawer</label>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const { createClient } = supabase
+        const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
+
+        _supabase.auth.signInWithOAuth({
+            provider: 'google',
+        })
+
+        var tag = document.createElement("script")
+        tag.src = "https://www.youtube.com/iframe_api"
+        var firstScriptTag = document.getElementsByTagName("script")[0]
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+        var player
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player("player", {
+                height: "390",
+                width: "640",
+                videoId: "M7lc1UVf-VE",
+                playerVars: {
+                    "playsinline": 1,
+                    "disablekb": 0,
+                    "controls": 1,
+                },
+                events: {
+                    "onReady": onPlayerReady,
+                    "onStateChange": onPlayerStateChange
+                }
+            })
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo()
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                console.log("Playing")
+            } else if (event.data == YT.PlayerState.PAUSED) {
+                console.log("Paused")
+            } else if (event.data == YT.PlayerState.ENDED) {
+                console.log("Ended")
+            }
+        }
+    </script>
+
+</body>
+
+</html>
