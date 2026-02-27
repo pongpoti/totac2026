@@ -40,6 +40,9 @@
 
         _supabase.auth.signInWithOAuth({
             provider: 'google',
+            options: {
+                redirectTo: "https://www.google.com"
+            }
         })
 
         var tag = document.createElement("script")
