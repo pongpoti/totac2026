@@ -44,10 +44,7 @@
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
 
         _supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo: "https://www.google.com"
-            }
+            provider: "google",
         })
 
         var tag = document.createElement("script")
