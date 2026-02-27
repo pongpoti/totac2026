@@ -2,6 +2,7 @@ import express from "express"
 import * as line from "@line/bot-sdk"
 import axios from "axios"
 import { createClient } from "@supabase/supabase-js"
+import { createServerClient } from "@supabase/ssr"
 import fuse from "fuse.js"
 import randomColor from "randomcolor"
 //
@@ -32,17 +33,33 @@ app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 app.use("/agenda", express.static("agenda"))
 app.use("/src", express.static("src"))
-app.use("/pacourse", express.static("pacourse"))
+app.use("/pacourse/signin", express.static("pacourse/signin"))
 
-app.get("/test", async (_, res) => {
-    try {
-        const { data } = await supabase.from("agenda").select()
-        res.json(data)
-    } catch (error) {
-        console.error(error)
-        res.sendStatus(500)
+app.get("/pacourse/auth", async (req, res) => {
+    const code = req.query.code
+    const next = req.query.next ?? "/"
+
+    if (code) {
+        const sup = createServerClient(
+            "https://akexkcjzgnlqlqrfxtdi.supabase.co",
+            "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af", {
+            cookies: {
+                getAll() {
+                    return parseCookieHeader(context.req.headers.cookie ?? '')
+                },
+                setAll(cookiesToSet) {
+                    cookiesToSet.forEach(({ name, value, options }) =>
+                        context.res.appendHeader('Set-Cookie', serializeCookieHeader(name, value, options))
+                    )
+                },
+            },
+        })
+        await sup.auth.exchangeCodeForSession(code)
     }
+
+    res.redirect(303, `/${next.slice(1)}`)
 })
+
 app.get("/letter/init", (_, res) => {
     form().then((id) => {
         res.redirect("https://dolphin-app-a5itu.ondigitalocean.app/letter/activate?id=" + id)

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sign-in</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const { createClient } = supabase
+        const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
+        async function signIn() {
+            const { data, error } = await _supabase.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                    redirectTo: "https://dolphin-app-a5itu.ondigitalocean.app/pacourse/auth/"
+                }
+            })
+            console.log(data)
+            if (error) {
+                console.error("Error signing in:", error)
+            }
+        }
+        signIn()
+    </script>
+</body>
+
+</html>
