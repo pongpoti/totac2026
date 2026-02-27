@@ -32,17 +32,6 @@ app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 app.use("/agenda", express.static("agenda"))
 app.use("/src", express.static("src"))
-app.use("/pacourse", express.static("pacourse"))
-
-app.get("pacourse/auth", async () => {
-    const { data } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-            redirectTo: "https://www.google.com"
-        }
-    })
-    console.log(data)
-})
 
 app.get("/test", async (_, res) => {
     try {
