@@ -36,8 +36,12 @@ app.use("/src", express.static("src"))
 app.use("/pacourse/signin", express.static("pacourse/signin"))
 
 app.get("/pacourse/auth", async (req, res) => {
+    console.log("Received auth request")
     const code = req.query.code
     const next = req.query.next ?? "/"
+
+    console.log(code)
+    console.log(next)
 
     if (code) {
         const sup = createServerClient(
