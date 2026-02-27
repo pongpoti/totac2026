@@ -37,7 +37,26 @@
     <div class="dock border-none">
         <label for="my-drawer-1" class="btn drawer-button">Open drawer</label>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        const { createClient } = supabase
+        const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
+        
+        async function getSupabaseJwt() {
+            const { data: { session } } = await _supabase.auth.getSession();
+
+            if (session) {
+                const jwt = session.access_token;
+                console.log("Supabase JWT (Access Token):", jwt);
+                return jwt;
+            } else {
+                console.log("No active session found.");
+                return null;
+            }
+        }
+        getSupabaseJwt()
+
+
         var tag = document.createElement("script")
         tag.src = "https://www.youtube.com/iframe_api"
         var firstScriptTag = document.getElementsByTagName("script")[0]

@@ -34,6 +34,7 @@ app.use("/submit", express.static("submit"))
 app.use("/agenda", express.static("agenda"))
 app.use("/src", express.static("src"))
 app.use("/pacourse/signin", express.static("pacourse/signin"))
+app.use("/pacourse", express.static("pacourse"))
 
 app.get("/letter/init", (_, res) => {
     form().then((id) => {

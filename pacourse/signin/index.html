@@ -15,6 +15,9 @@
         async function signIn() {
             const { data, error } = await _supabase.auth.signInWithOAuth({
                 provider: "google",
+                options: {
+                    redirectTo: "https://dolphin-app-a5itu.ondigitalocean.app/pacourse"
+                }
             })
             if (data.session) {
                 const jwt = data.session.access_token;
