@@ -42,25 +42,17 @@
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
 
-        async function fetchUserData() {
-            // The client automatically uses the logged-in user's token
-            const { data, error } = await _supabase
-                .from("data") // Replace 'profiles' with your table name
-                .select()
+        const hash = window.location.hash
+        const params = new URLSearchParams(hash.substring(1))
+        const access_token = params.get("access_token")
 
-            if (error) {
-                console.error('Data fetching error:', error.message);
-                return;
+        _supabase.auth.onAuthStateChange(async (event, session) => {
+            if (event === "SIGNED_IN" && session) {
+                console.log(event, session)
+                const { data: { user } } = await _supabase.auth.getUser()
+                console.log("Authenticated user:", user)
             }
-            console.log('User data:', data);
-        }
-
-        const { data: authListener } = _supabase.auth.onAuthStateChange(async (event, session) => {
-            if (event === 'SIGNED_IN' && session) {
-                console.log('User signed in, fetching data...')
-                await fetchUserData()
-            }
-        });
+        })
 
         var tag = document.createElement("script")
         tag.src = "https://www.youtube.com/iframe_api"
