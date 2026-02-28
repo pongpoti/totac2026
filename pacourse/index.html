@@ -42,7 +42,7 @@
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
 
-        const session = async () => {
+        const supabaseGetSession = async () => {
             const { data: { session } } = await _supabase.auth.getSession()
             if (session) {
                 const jwt = session.access_token
@@ -54,7 +54,7 @@
             }
         }
 
-        const user = async () => {
+        const supabaseGetUser = async () => {
             const { data: { user } } = await _supabase.auth.getUser()
             if (user) {
                 console.log("ID:", user.id)
@@ -66,8 +66,8 @@
         }
 
         _supabase.auth.onAuthStateChange( async (event, session) => {
-            await session()
-            await user()
+            await supabaseGetSession()
+            await supabaseGetUser()
             console.log("Auth state changed:", event, session)
         })
 
