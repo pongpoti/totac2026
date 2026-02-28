@@ -84,13 +84,15 @@
             vdo18: "dNqxCodVE50"
         }
         let video_id = null
-        //Initialize youtube iframe API
-        var tag = document.createElement("script")
-        tag.src = "https://www.youtube.com/iframe_api"
-        var firstScriptTag = document.getElementsByTagName("script")[0]
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
         var player
-        //
+        //Initialize youtube iframe API
+        function downloadYoutubeIframeAPI() {
+            var tag = document.createElement("script")
+            tag.src = "https://www.youtube.com/iframe_api"
+            tag.onload = resolve
+            var firstScriptTag = document.getElementsByTagName("script")[0]
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+        }
         function onYouTubeIframeAPIReady() {
             player = new YT.Player("player", {
                 height: "390",
@@ -136,6 +138,9 @@
                         Object.values(retrieved_vdo_json).forEach(value => { sum += value })
                         console.log("Sum of vdo_json values:", sum)
                         video_id = youtube_playlist["vdo" + (sum + 1)]
+                        loader.style.display = "none"
+                        playerContainer.style.display = "block"
+                        downloadYoutubeIframeAPI()
                     }
                 }
             }
