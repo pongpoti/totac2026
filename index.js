@@ -25,26 +25,6 @@ axios.defaults.headers.delete["Authorization"] = "Bearer " + process.env.TALLY_A
 const supabase_totac = createClient(process.env.SUPABASE_TOTAC_URL, process.env.SUPABASE_TOTAC_PUBLISHABLE_KEY)
 const supabase_pacourse = createClient(process.env.SUPABASE_PACOURSE_URL, process.env.SUPABASE_PACOURSE_PUBLISHABLE_KEY)
 //other variables
-const youtube_playlist = {
-    vdo1: "FQgTtRnDEoA",
-    vdo2: "U6vl2A9ZVcc",
-    vdo3: "w5bY0ce46cc",
-    vdo4: "bwXShkYFYnc",
-    vdo5: "1d-K0-_T5b0",
-    vdo6: "7X4sgzfiMsk",
-    vdo7: "RF6HuDnFq-M",
-    vdo8: "peSvkc7jn-4",
-    vdo9: "qCp7scCpOLs",
-    vdo10: "pUPAIDaHXRQ",
-    vdo11: "BRHThXOYvwU",
-    vdo12: "EMePqJ98yRQ",
-    vdo13: "UdY0tsgmHnw",
-    vdo14: "8ZhKXgBX1Po",
-    vdo15: "FXvU-iCWy9I",
-    vdo16: "5QZs3r4PMl4",
-    vdo17: "F7vDsWuRx7I",
-    vdo18: "dNqxCodVE50"
-}
 const agenda_day = ["18 March 2026", "19 March 2026", "20 March 2026"]
 const agenda_room = ["Room A", "Room B", "Room C", "Room D"]
 //
@@ -59,31 +39,6 @@ app.use("/src", express.static("src"))
 app.use("/pacourse/signin", express.static("pacourse/signin"))
 app.use("/pacourse/auth", express.static("pacourse/auth"))
 app.use("/pacourse/complete", express.static("pacourse/complete"))
-
-    
-app.get("/pacourse/auth", async (_, res) => {
-    console.log("Authenticating user...")
-    const { data: { user } } = await supabase_pacourse.auth.getUser()
-    console.log("User:", user)
-    if (user) {
-        const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
-        let sum = 0
-        const res_check_id_null = await supabase_pacourse.from("data").select().eq("id", user.id)
-        if (res_check_id_null.data.length === 0) {
-            await supabase_pacourse.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
-        } else {
-            const res_get_vdo_json = await supabase_pacourse.from("data").select("vdo_json").eq("id", user.id).single()
-            const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
-            Object.values(retrieved_vdo_json).forEach(value => { sum += value })
-            if (sum === 18) {
-                res.redirect("/pacourse/complete")
-            }
-        }
-        res.redirect("/pacourse?index=vdo" + (sum + 1).toString())
-    } else {
-        res.sendStatus(401)
-    }
-})
 
 app.get("/letter/init", (_, res) => {
     form().then((id) => {

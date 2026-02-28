@@ -15,6 +15,14 @@
             border: none;
             overflow: hidden;
         }
+
+        #loader {
+            display: block;
+        }
+
+        #player {
+            display: none;
+        }
     </style>
 </head>
 
@@ -22,6 +30,9 @@
     <div class="drawer">
         <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
+            <div id="loader" class="flex flex-col items-center justify-center">
+                <span class="loading loading-spinner loading-xl"></span>
+            </div>
             <div id="player"></div>
 
         </div>
@@ -48,45 +59,47 @@
         // Initialize Supabase client
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
-        // Listen for authentication state changes
-        _supabase.auth.onAuthStateChange(async (event, session) => {
-            if (event === "SIGNED_IN" && session) {
-                console.log(event, session)
-                const { data: { user } } = await _supabase.auth.getUser()
-                if (user) {
-                    console.log("User signed in:", user)
-                    const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
-                    let sum = 0
-                    const res_check_id_null = await _supabase.from("data").select().eq("id", user.id)
-                    console.log("res_check_id_null", res_check_id_null)
-                    if (res_check_id_null.data.length === 0) {
-                        await _supabase.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
-                    } else {
-                        const res_get_vdo_json = await _supabase.from("data").select("vdo_json").eq("id", user.id).single()
-                        const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
-                        Object.values(retrieved_vdo_json).forEach(value => { sum += value })
-                        console.log("Sum of vdo_json values:", sum)
-                    }
-                }
-            }
-        })
-
+        //DOM variables
+        const loader = document.getElementById("loader")
+        const playerContainer = document.getElementById("player")
+        //othet variables
+        const youtube_playlist = {
+            vdo1: "FQgTtRnDEoA",
+            vdo2: "U6vl2A9ZVcc",
+            vdo3: "w5bY0ce46cc",
+            vdo4: "bwXShkYFYnc",
+            vdo5: "1d-K0-_T5b0",
+            vdo6: "7X4sgzfiMsk",
+            vdo7: "RF6HuDnFq-M",
+            vdo8: "peSvkc7jn-4",
+            vdo9: "qCp7scCpOLs",
+            vdo10: "pUPAIDaHXRQ",
+            vdo11: "BRHThXOYvwU",
+            vdo12: "EMePqJ98yRQ",
+            vdo13: "UdY0tsgmHnw",
+            vdo14: "8ZhKXgBX1Po",
+            vdo15: "FXvU-iCWy9I",
+            vdo16: "5QZs3r4PMl4",
+            vdo17: "F7vDsWuRx7I",
+            vdo18: "dNqxCodVE50"
+        }
+        let video_id = null
+        //Initialize youtube iframe API
         var tag = document.createElement("script")
         tag.src = "https://www.youtube.com/iframe_api"
         var firstScriptTag = document.getElementsByTagName("script")[0]
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
         var player
-
-
+        //
         function onYouTubeIframeAPIReady() {
             player = new YT.Player("player", {
                 height: "390",
                 width: "640",
-                videoId: "M7lc1UVf-VE",
+                videoId: video_id,
                 playerVars: {
                     "playsinline": 1,
-                    "disablekb": 0,
-                    "controls": 1,
+                    "disablekb": 1,
+                    "controls": 0,
                 },
                 events: {
                     "onReady": onPlayerReady,
@@ -94,11 +107,9 @@
                 }
             })
         }
-
         function onPlayerReady(event) {
             event.target.playVideo()
         }
-
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.PLAYING) {
                 console.log("Playing")
@@ -108,6 +119,27 @@
                 console.log("Ended")
             }
         }
+        // Listen for authentication state changes
+        _supabase.auth.onAuthStateChange(async (event, session) => {
+            if (event === "SIGNED_IN" && session) {
+                const { data: { user } } = await _supabase.auth.getUser()
+                if (user) {
+                    const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
+                    let sum = 0
+                    const res_check_id_null = await _supabase.from("data").select().eq("id", user.id)
+                    if (res_check_id_null.data.length === 0) {
+                        console.log("No existing record found for user. Inserting new record.")
+                        await _supabase.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
+                    } else {
+                        const res_get_vdo_json = await _supabase.from("data").select("vdo_json").eq("id", user.id).single()
+                        const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
+                        Object.values(retrieved_vdo_json).forEach(value => { sum += value })
+                        console.log("Sum of vdo_json values:", sum)
+                        video_id = youtube_playlist["vdo" + (sum + 1)]
+                    }
+                }
+            }
+        })
     </script>
 
 </body>
