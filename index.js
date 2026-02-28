@@ -64,6 +64,7 @@ app.use("/pacourse/complete", express.static("pacourse/complete"))
 
 app.get("/pacourse/auth", async (req, res) => {
     const jwt = req.query.access_token
+    console.log(jwt)
     if (jwt) {
         const decoded = jwtDecode(jwt)
         const { data: { user } } = await supabase_pacourse.auth.getUser(decoded.sub)
