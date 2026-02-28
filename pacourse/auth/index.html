@@ -42,15 +42,23 @@
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
 
-        const hash = window.location.hash
-        const params = new URLSearchParams(hash.substring(1))
-        const access_token = params.get("access_token")
-
         _supabase.auth.onAuthStateChange(async (event, session) => {
             if (event === "SIGNED_IN" && session) {
-                console.log(event, session)
+                console.log(event)
                 const { data: { user } } = await _supabase.auth.getUser()
-                console.log("Authenticated user:", user)
+                if (user) {
+                    const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
+                    let sum = 0
+                    const res_check_id_null = await _supabase.from("data").select().eq("id", user.id)
+                    if (res_check_id_null.data.length === 0) {
+                        await _supabase.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
+                    } else {
+                        const res_get_vdo_json = await _supabase.from("data").select("vdo_json").eq("id", user.id).single()
+                        const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
+                        Object.values(retrieved_vdo_json).forEach(value => { sum += value })
+                        console.log("Sum of vdo_json values:", sum)
+                    }
+                }
             }
         })
 
