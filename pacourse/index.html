@@ -67,6 +67,9 @@
         }
         getSupabaseUser()
 
+        _supabase.auth.onAuthStateChange((event, session) => {
+            console.log("Auth state changed:", event, session)
+        })
 
         function decodeJWT(token) {
             let base64Url = token.split(".")[1];
