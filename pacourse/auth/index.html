@@ -45,7 +45,7 @@
         _supabase.auth.onAuthStateChange(async (event, session) => {
             if (event === "SIGNED_IN" && session) {
                 console.log(event, session)
-                const { data: { user } } = await _supabase.auth.getUser()
+                const { data: { user } } = await _supabase.auth.getUser(session.access_token)
                 if (user) {
                     console.log("User signed in:", user)
                     const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
