@@ -60,9 +60,11 @@ app.use("/pacourse", express.static("pacourse"))
 app.use("/pacourse/signin", express.static("pacourse/signin"))
 app.use("/pacourse/complete", express.static("pacourse/complete"))
 
-
+    
 app.get("/pacourse/auth", async (_, res) => {
+    console.log("Authenticating user...")
     const { data: { user } } = await supabase_pacourse.auth.getUser()
+    console.log("User:", user)
     if (user) {
         const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
         let sum = 0
