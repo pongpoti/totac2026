@@ -44,12 +44,12 @@
 
         _supabase.auth.onAuthStateChange(async (event, session) => {
             if (event === "SIGNED_IN" && session) {
-                console.log(event)
+                console.log(event, session)
                 const { data: { user } } = await _supabase.auth.getUser()
                 if (user) {
+                    console.log("User signed in:", user)
                     const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
                     let sum = 0
-                    console.log("User signed in:", user)
                     const res_check_id_null = await _supabase.from("data").select().eq("id", user.id)
                     if (res_check_id_null.data.length === 0) {
                         await _supabase.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
@@ -59,6 +59,8 @@
                         Object.values(retrieved_vdo_json).forEach(value => { sum += value })
                         console.log("Sum of vdo_json values:", sum)
                     }
+                } else {
+                    window.location.replace("https://dolphin-app-a5itu.ondigitalocean.app/pacourse/complete")
                 }
             }
         })
