@@ -19,10 +19,6 @@
                     redirectTo: "https://dolphin-app-a5itu.ondigitalocean.app/pacourse/auth"
                 }
             })
-            if (data.session) {
-                const jwt = data.session.access_token;
-                console.log('User JWT:', jwt);
-            }
         }
         signIn()
     </script>

@@ -4,7 +4,6 @@ import axios from "axios"
 import { createClient } from "@supabase/supabase-js"
 import fuse from "fuse.js"
 import randomColor from "randomcolor"
-import { jwtDecode } from "jwt-decode"
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -62,36 +61,26 @@ app.use("/pacourse/signin", express.static("pacourse/signin"))
 app.use("/pacourse/complete", express.static("pacourse/complete"))
 
 
-app.get("/pacourse/auth", async (req, res) => {
-    /*
-    const jwt = req.query.access_token
-    console.log(jwt)
-    if (jwt) {
-        const decoded = jwtDecode(jwt)
-        const { data: { user } } = await supabase_pacourse.auth.getUser(decoded.sub)
-        if (user) {
-            const default_vdo_json = {
-                vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0
-            }
-            let sum = 0
-            const res_check_id_null = await supabase_pacourse.from("data").select().eq("id", user.id)
-            if (res_check_id_null.data.length === 0) {
-                await supabase_pacourse.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
-            } else {
-                const res_get_vdo_json = await supabase_pacourse.from("data").select("vdo_json").eq("id", user.id).single()
-                const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
-                Object.values(retrieved_vdo_json).forEach(value => { sum += value })
-                if (sum === 18) {
-                    res.redirect("/pacourse/complete")
-                }
-            }
-            res.redirect("/pacourse?index=vdo" + (sum + 1).toString())
+app.get("/pacourse/auth", async (_, res) => {
+    const { data: { user } } = await supabase_pacourse.auth.getUser()
+    if (user) {
+        const default_vdo_json = { vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0 }
+        let sum = 0
+        const res_check_id_null = await supabase_pacourse.from("data").select().eq("id", user.id)
+        if (res_check_id_null.data.length === 0) {
+            await supabase_pacourse.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
         } else {
-            res.sendStatus(401)
+            const res_get_vdo_json = await supabase_pacourse.from("data").select("vdo_json").eq("id", user.id).single()
+            const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
+            Object.values(retrieved_vdo_json).forEach(value => { sum += value })
+            if (sum === 18) {
+                res.redirect("/pacourse/complete")
+            }
         }
+        res.redirect("/pacourse?index=vdo" + (sum + 1).toString())
+    } else {
+        res.sendStatus(401)
     }
-    */
-   res.redirect("https://www.google.com")
 })
 
 app.get("/letter/init", (_, res) => {
