@@ -57,8 +57,10 @@ app.use("/letter/activate", express.static("letter"))
 app.use("/submit", express.static("submit"))
 app.use("/agenda", express.static("agenda"))
 app.use("/src", express.static("src"))
-app.use("/pacourse/signin", express.static("pacourse/signin"))
 app.use("/pacourse", express.static("pacourse"))
+app.use("/pacourse/signin", express.static("pacourse/signin"))
+app.use("/pacourse/complete", express.static("pacourse/complete"))
+
 
 app.get("/pacourse/auth", async (req, res) => {
     const jwt = req.query.access_token
@@ -72,6 +74,16 @@ app.get("/pacourse/auth", async (req, res) => {
             const res_check_id_null = await supabase_pacourse.from("data").select().eq("id", user.id)
             if (res_check_id_null.data.length === 0) {
                 await supabase_pacourse.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
+            } else {
+                const res_get_vdo_json = await supabase_pacourse.from("data").select("vdo_json").eq("id", user.id).single()
+                const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
+                let sum = 0
+                Object.values(retrieved_vdo_json).forEach(value => { sum += value })
+                if (sum === 18) {
+                    res.redirect("/pacourse/complete")
+                } else {
+                    res.redirect("/pacourse?index=vdo" + (sum + 1).toString())
+                }
             }
             res.json({ id: user.id, email: user.email })
         } else {
