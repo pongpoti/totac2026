@@ -71,21 +71,19 @@ app.get("/pacourse/auth", async (req, res) => {
             const default_vdo_json = {
                 vdo1: 0, vdo2: 0, vdo3: 0, vdo4: 0, vdo5: 0, vdo6: 0, vdo7: 0, vdo8: 0, vdo9: 0, vdo10: 0, vdo11: 0, vdo12: 0, vdo13: 0, vdo14: 0, vdo15: 0, vdo16: 0, vdo17: 0, vdo18: 0
             }
+            let sum = 0
             const res_check_id_null = await supabase_pacourse.from("data").select().eq("id", user.id)
             if (res_check_id_null.data.length === 0) {
                 await supabase_pacourse.from("data").insert({ id: user.id, email: user.email, vdo_json: default_vdo_json })
             } else {
                 const res_get_vdo_json = await supabase_pacourse.from("data").select("vdo_json").eq("id", user.id).single()
                 const retrieved_vdo_json = res_get_vdo_json.data.vdo_json
-                let sum = 0
                 Object.values(retrieved_vdo_json).forEach(value => { sum += value })
                 if (sum === 18) {
                     res.redirect("/pacourse/complete")
-                } else {
-                    res.redirect("/pacourse?index=vdo" + (sum + 1).toString())
                 }
             }
-            res.json({ id: user.id, email: user.email })
+            res.redirect("/pacourse?index=vdo" + (sum + 1).toString())
         } else {
             res.sendStatus(401)
         }

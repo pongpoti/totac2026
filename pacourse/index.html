@@ -42,34 +42,25 @@
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
 
-        const supabaseGetSession = async () => {
-            const { data: { session } } = await _supabase.auth.getSession()
-            if (session) {
-                const jwt = session.access_token
-                console.log("JWT:", jwt)
-                return jwt
-            } else {
-                console.log("No active session found.")
-                return null
+        async function fetchUserData() {
+            // The client automatically uses the logged-in user's token
+            const { data, error } = await _supabase
+                .from("data") // Replace 'profiles' with your table name
+                .select()
+
+            if (error) {
+                console.error('Data fetching error:', error.message);
+                return;
             }
+            console.log('User data:', data);
         }
 
-        const supabaseGetUser = async () => {
-            const { data: { user } } = await _supabase.auth.getUser()
-            if (user) {
-                console.log("ID:", user.id)
-                return user
-            } else {
-                console.log("No active session found.")
-                return null
+        const { data: authListener } = _supabase.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN' && session) {
+                console.log('User signed in, fetching data...')
+                await fetchUserData()
             }
-        }
-
-        _supabase.auth.onAuthStateChange( async (event, session) => {
-            await supabaseGetSession()
-            await supabaseGetUser()
-            console.log("Auth state changed:", event, session)
-        })
+        });
 
         var tag = document.createElement("script")
         tag.src = "https://www.youtube.com/iframe_api"
