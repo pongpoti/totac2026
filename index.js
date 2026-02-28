@@ -2,31 +2,55 @@ import express from "express"
 import * as line from "@line/bot-sdk"
 import axios from "axios"
 import { createClient } from "@supabase/supabase-js"
-import { createServerClient } from "@supabase/ssr"
 import fuse from "fuse.js"
 import randomColor from "randomcolor"
-//
+import { jwtDecode } from "jwt-decode"
+
 const app = express()
 const port = process.env.PORT || 8080
-const headers = {
+//LINE variables
+const line_headers = {
     "Content-Type": "application/json",
-    "Authorization": "Bearer ghXEhAvBnIVWM+YH7FdbugEGoW2IUV268U6Yhn+c5Szt7NCgZdZ1smtDfxx4UDx840KcwU4fb0D/Mzz9RCeJcitdSpvVp45Z0Jfp0RzFVCx3B0xFSOSyTLZ6fX0zJ404WeLNK8/xN/rHEyIkBd7CZgdB04t89/1O/w1cDnyilFU=",
+    "Authorization": "Bearer " + process.env.LINE_CHANNEL_ACCESS_TOKEN,
 }
-const config = { channelSecret: "50dd6122944e61573f6aaaa76ad9ebbb" }
-const client = new line.messagingApi.MessagingApiClient({
-    channelAccessToken: "ghXEhAvBnIVWM+YH7FdbugEGoW2IUV268U6Yhn+c5Szt7NCgZdZ1smtDfxx4UDx840KcwU4fb0D/Mzz9RCeJcitdSpvVp45Z0Jfp0RzFVCx3B0xFSOSyTLZ6fX0zJ404WeLNK8/xN/rHEyIkBd7CZgdB04t89/1O/w1cDnyilFU=",
+const line_config = { channelSecret: process.env.LINE_CHANNEL_SECRET }
+const line_client = new line.messagingApi.MessagingApiClient({
+    channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
 })
+//axios - tally
 axios.defaults.headers.post["Content-Type"] = "application/json"
-axios.defaults.headers.post["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
+axios.defaults.headers.post["Authorization"] = "Bearer " + process.env.TALLY_API_KEY
 axios.defaults.headers.delete["Content-Type"] = "application/json"
-axios.defaults.headers.delete["Authorization"] = "Bearer tly-ASqvEMi4UuCizMUvSXDMTaH8L2Fqe7Ax"
-const supabase = createClient("https://vwpfuieqetmzjopzhetn.supabase.co", "sb_publishable_neva2oamaffoDv-ChO1wlA_bWlsrlYj")
-//
+axios.defaults.headers.delete["Authorization"] = "Bearer " + process.env.TALLY_API_KEY
+//Supabase variables
+const supabase_totac = createClient(process.env.SUPABASE_TOTAC_URL, process.env.SUPABASE_TOTAC_PUBLISHABLE_KEY)
+const supabase_pacourse = createClient(process.env.SUPABASE_PACOURSE_URL, process.env.SUPABASE_PACOURSE_PUBLISHABLE_KEY)
+//other variables
+const youtube_playlist = {
+    VDO1: "FQgTtRnDEoA",
+    VDO2: "U6vl2A9ZVcc",
+    VDO3: "w5bY0ce46cc",
+    VDO4: "bwXShkYFYnc",
+    VDO5: "1d-K0-_T5b0",
+    VDO6: "7X4sgzfiMsk",
+    VDO7: "RF6HuDnFq-M",
+    VDO8: "peSvkc7jn-4",
+    VDO9: "qCp7scCpOLs",
+    VDO10: "pUPAIDaHXRQ",
+    VDO11: "BRHThXOYvwU",
+    VDO12: "EMePqJ98yRQ",
+    VDO13: "UdY0tsgmHnw",
+    VDO14: "8ZhKXgBX1Po",
+    VDO15: "FXvU-iCWy9I",
+    VDO16: "5QZs3r4PMl4",
+    VDO17: "F7vDsWuRx7I",
+    VDO18: "dNqxCodVE50"
+}
 const agenda_day = ["18 March 2026", "19 March 2026", "20 March 2026"]
 const agenda_room = ["Room A", "Room B", "Room C", "Room D"]
 //
 app.listen(port, () => {
-    console.log("TOTAC2026 server is live")
+    console.log("TOTS server is running")
 })
 
 app.use("/letter/activate", express.static("letter"))
@@ -35,6 +59,21 @@ app.use("/agenda", express.static("agenda"))
 app.use("/src", express.static("src"))
 app.use("/pacourse/signin", express.static("pacourse/signin"))
 app.use("/pacourse", express.static("pacourse"))
+
+app.get("/pacourse/auth", async (req, res) => {
+    const jwt = req.query.access_token
+    if (jwt) {
+        const decoded = jwtDecode(jwt)
+        const { data: { user } } = await supabase_pacourse.auth.getUser(decoded.sub)
+        if (user) {
+            res.json({ id: user.id, email: user.email })
+        } else {
+            res.sendStatus(401)
+        }
+    }
+
+
+})
 
 app.get("/letter/init", (_, res) => {
     form().then((id) => {
@@ -83,7 +122,7 @@ app.post("/callback", (req, res) => {
     })
 })
 
-app.post("/line", line.middleware(config), (req, res) => {
+app.post("/line", line.middleware(line_config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result))
@@ -100,7 +139,7 @@ const handleEvent = async (event) => {
     try {
         await axios.post("https://api.line.me/v2/bot/chat/loading/start",
             { "chatId": event.source.userId },
-            { headers: headers }
+            { headers: line_headers }
         )
     } catch (error) {
         console.error(error)
@@ -108,7 +147,7 @@ const handleEvent = async (event) => {
     //
     const message = event.message.text.trim().toLowerCase()
     if (message === "coffee") {
-        client.replyMessage({
+        line_client.replyMessage({
             "replyToken": event.replyToken,
             "messages": [
                 {
@@ -119,7 +158,7 @@ const handleEvent = async (event) => {
             ]
         })
     } else if (message === "bakery") {
-        client.replyMessage({
+        line_client.replyMessage({
             "replyToken": event.replyToken,
             "messages": [
                 {
@@ -130,7 +169,7 @@ const handleEvent = async (event) => {
             ]
         })
     } else if (message === "search") {
-        client.replyMessage({
+        line_client.replyMessage({
             "replyToken": event.replyToken,
             "messages": [
                 {
@@ -159,7 +198,7 @@ const handleEvent = async (event) => {
             ]
         })
     } else if (message === "letter") {
-        client.replyMessage({
+        line_client.replyMessage({
             "replyToken": event.replyToken,
             "messages": [
                 {
@@ -170,7 +209,7 @@ const handleEvent = async (event) => {
         })
     } else if (message.startsWith("#")) {
         const results = JSON.stringify(await searchKeyword(message.substring(1).trim()))
-        client.replyMessage({
+        line_client.replyMessage({
             "replyToken": event.replyToken,
             "messages": JSON.parse(results)
         })
@@ -1437,11 +1476,11 @@ const getOptionAnswer = (options, value) => {
     }
 }
 const searchKeyword = async (keyword) => {
-    const { data } = await supabase.from("agenda").select()
+    const { data } = await supabase_totac.from("agenda").select()
     const fuseOptions = {
         isCaseSensitive: false,
         ignoreLocation: true,
-        threshold: 0.4,
+        threshold: 0.3,
         keys: [
             "section",
             "topic",

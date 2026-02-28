@@ -6,6 +6,7 @@
     "axios": "^1.13.2",
     "express": "^5.2.1",
     "fuse.js": "^7.1.0",
+    "jwt-decode": "^4.0.0",
     "randomcolor": "^0.6.2"
   },
   "type": "module",
