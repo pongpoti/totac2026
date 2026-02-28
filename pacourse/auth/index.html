@@ -39,16 +39,16 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        //if user refresh the page, redirect to signin page
         const hashParams = new URLSearchParams(window.location.hash.substring(1))
         const accessToken = hashParams.get("access_token")
         if (!accessToken) {
-            console.error("Access token not found in URL hash")
-            window.location.replace("https://dolphin-app-a5itu.ondigitalocean.app/pacourse/complete")
+            window.location.replace("https://dolphin-app-a5itu.ondigitalocean.app/pacourse/signin")
         }
-
+        // Initialize Supabase client
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
-
+        // Listen for authentication state changes
         _supabase.auth.onAuthStateChange(async (event, session) => {
             if (event === "SIGNED_IN" && session) {
                 console.log(event, session)
