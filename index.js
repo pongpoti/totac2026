@@ -63,6 +63,7 @@ app.use("/pacourse/complete", express.static("pacourse/complete"))
 
 
 app.get("/pacourse/auth", async (req, res) => {
+    /*
     const jwt = req.query.access_token
     console.log(jwt)
     if (jwt) {
@@ -89,8 +90,8 @@ app.get("/pacourse/auth", async (req, res) => {
             res.sendStatus(401)
         }
     }
-
-
+    */
+   res.redirect("https://www.google.com")
 })
 
 app.get("/letter/init", (_, res) => {
