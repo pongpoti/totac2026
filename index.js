@@ -27,24 +27,24 @@ const supabase_totac = createClient(process.env.SUPABASE_TOTAC_URL, process.env.
 const supabase_pacourse = createClient(process.env.SUPABASE_PACOURSE_URL, process.env.SUPABASE_PACOURSE_PUBLISHABLE_KEY)
 //other variables
 const youtube_playlist = {
-    VDO1: "FQgTtRnDEoA",
-    VDO2: "U6vl2A9ZVcc",
-    VDO3: "w5bY0ce46cc",
-    VDO4: "bwXShkYFYnc",
-    VDO5: "1d-K0-_T5b0",
-    VDO6: "7X4sgzfiMsk",
-    VDO7: "RF6HuDnFq-M",
-    VDO8: "peSvkc7jn-4",
-    VDO9: "qCp7scCpOLs",
-    VDO10: "pUPAIDaHXRQ",
-    VDO11: "BRHThXOYvwU",
-    VDO12: "EMePqJ98yRQ",
-    VDO13: "UdY0tsgmHnw",
-    VDO14: "8ZhKXgBX1Po",
-    VDO15: "FXvU-iCWy9I",
-    VDO16: "5QZs3r4PMl4",
-    VDO17: "F7vDsWuRx7I",
-    VDO18: "dNqxCodVE50"
+    vdo1: "FQgTtRnDEoA",
+    vdo2: "U6vl2A9ZVcc",
+    vdo3: "w5bY0ce46cc",
+    vdo4: "bwXShkYFYnc",
+    vdo5: "1d-K0-_T5b0",
+    vdo6: "7X4sgzfiMsk",
+    vdo7: "RF6HuDnFq-M",
+    vdo8: "peSvkc7jn-4",
+    vdo9: "qCp7scCpOLs",
+    vdo10: "pUPAIDaHXRQ",
+    vdo11: "BRHThXOYvwU",
+    vdo12: "EMePqJ98yRQ",
+    vdo13: "UdY0tsgmHnw",
+    vdo14: "8ZhKXgBX1Po",
+    vdo15: "FXvU-iCWy9I",
+    vdo16: "5QZs3r4PMl4",
+    vdo17: "F7vDsWuRx7I",
+    vdo18: "dNqxCodVE50"
 }
 const agenda_day = ["18 March 2026", "19 March 2026", "20 March 2026"]
 const agenda_room = ["Room A", "Room B", "Room C", "Room D"]
@@ -1480,7 +1480,7 @@ const searchKeyword = async (keyword) => {
     const fuseOptions = {
         isCaseSensitive: false,
         ignoreLocation: true,
-        threshold: 0.3,
+        threshold: 0.2,
         keys: [
             "section",
             "topic",
