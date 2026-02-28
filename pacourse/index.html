@@ -41,20 +41,46 @@
     <script>
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
-        
-        async function getSupabaseJwt() {
-            const { data: { session } } = await _supabase.auth.getSession();
 
+        async function getSupabaseJwt() {
+            const { data: { session } } = await _supabase.auth.getSession()
             if (session) {
-                const jwt = session.access_token;
-                console.log("Supabase JWT (Access Token):", jwt);
-                return jwt;
+                const jwt = session.access_token
+                console.log("Supabase JWT (Access Token):", jwt)
+                return jwt
             } else {
-                console.log("No active session found.");
-                return null;
+                console.log("No active session found.")
+                return null
             }
         }
         getSupabaseJwt()
+
+        async function getSupabaseUser() {
+            const { data: { user } } = await _supabase.auth.getUser()
+            if (user) {
+                console.log("Supabase User:", user)
+                return user
+            } else {
+                console.log("No active session found.")
+                return null
+            }
+        }
+        getSupabaseUser()
+
+
+        function decodeJWT(token) {
+            let base64Url = token.split(".")[1];
+            let base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+            let jsonPayload = decodeURIComponent(
+                atob(base64)
+                    .split("")
+                    .map(function (c) {
+                        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                    })
+                    .join("")
+            );
+            return JSON.parse(jsonPayload);
+        }
 
 
         var tag = document.createElement("script")
@@ -62,6 +88,7 @@
         var firstScriptTag = document.getElementsByTagName("script")[0]
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
         var player
+
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player("player", {
