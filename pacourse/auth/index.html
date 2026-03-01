@@ -53,6 +53,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Lock the screen orientation to portrait
+        screen.orientation.lock("portrait")
         //if user refresh the page, redirect to signin page
         const hashParams = new URLSearchParams(window.location.hash.substring(1))
         const accessToken = hashParams.get("access_token")
