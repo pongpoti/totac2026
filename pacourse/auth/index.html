@@ -101,7 +101,8 @@
                     } else {
                         const res_get_vdo = await _supabase.from("data").select("vdo").eq("id", user.id).single()
                         const retrieved_vdo = res_get_vdo.data.vdo
-                        video_id = youtube_playlist[retrieved_vdo]
+                        //video_id = youtube_playlist[retrieved_vdo]
+                        video_id = "miet_j6_YAU"
                         if (video_id !== "") {
                             loadYouTubeIframeAPI()
                         }
