@@ -8,6 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>E-learning</title>
     <style>
+        body{
+            background-color: black;
+        }
         iframe {
             width: 100vw;
             height: 85vh;
@@ -16,22 +19,20 @@
             overflow: hidden;
             margin: 0;
         }
-
         #loader {
             visibility: visible;
         }
-
         #container {
             visibility: hidden;
         }
     </style>
 </head>
 
-<body class="bg-black">
+<body>
     <div class="drawer">
         <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
-            <div id="loader" class="flex flex-col items-center justify-center">
+            <div id="loader" class="flex flex-col items-center justify-center color">
                 <span class="loading loading-spinner loading-xl"></span>
             </div>
             <div id="container">
@@ -103,8 +104,7 @@
                     } else {
                         const res_get_vdo = await _supabase.from("data").select("vdo").eq("id", user.id).single()
                         const retrieved_vdo = res_get_vdo.data.vdo
-                        //video_id = youtube_playlist[retrieved_vdo]
-                        video_id = "miet_j6_YAU"
+                        video_id = youtube_playlist[retrieved_vdo]
                         if (video_id !== "") {
                             loadYouTubeIframeAPI()
                         }

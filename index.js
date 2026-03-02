@@ -23,7 +23,6 @@ axios.defaults.headers.delete["Content-Type"] = "application/json"
 axios.defaults.headers.delete["Authorization"] = "Bearer " + process.env.TALLY_API_KEY
 //Supabase variables
 const supabase_totac = createClient(process.env.SUPABASE_TOTAC_URL, process.env.SUPABASE_TOTAC_PUBLISHABLE_KEY)
-const supabase_pacourse = createClient(process.env.SUPABASE_PACOURSE_URL, process.env.SUPABASE_PACOURSE_PUBLISHABLE_KEY)
 //other variables
 const agenda_day = ["18 March 2026", "19 March 2026", "20 March 2026"]
 const agenda_room = ["Room A", "Room B", "Room C", "Room D"]
