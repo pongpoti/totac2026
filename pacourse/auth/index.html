@@ -8,9 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>E-learning</title>
     <style>
-        *{
-            background-color: black;
-        }
         iframe {
             width: 100vw;
             height: 85vh;
@@ -19,22 +16,17 @@
             overflow: hidden;
             margin: 0;
         }
-        #loader {
-            visibility: visible;
-        }
+
         #container {
             visibility: hidden;
         }
     </style>
 </head>
 
-<body>
-    <div class="drawer">
+<body class="bg-black">
+    <div class="drawer bg-black">
         <input id="my-drawer-1" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content">
-            <div id="loader" class="flex flex-col items-center justify-center color">
-                <span class="loading loading-spinner loading-xl"></span>
-            </div>
             <div id="container">
                 <div id="player"></div>
             </div>
@@ -66,7 +58,6 @@
         const { createClient } = supabase
         const _supabase = createClient("https://akexkcjzgnlqlqrfxtdi.supabase.co", "sb_publishable_f9sKJUhh5ppG4tIyAXvF6A_hArSH2Af")
         //DOM variables
-        const loader = document.getElementById("loader")
         const container = document.getElementById("container")
         //othet variables
         const youtube_playlist = {
@@ -113,9 +104,6 @@
             }
         })
         //
-        loader.style.visibility = "hidden"
-        container.style.visibility = "visible"
-        //
         function loadYouTubeIframeAPI() {
             var tag = document.createElement('script')
             tag.src = "https://www.youtube.com/iframe_api"
@@ -137,7 +125,7 @@
             })
         }
         function onPlayerReady(event) {
-            event.target.playVideo()
+            container.style.visibility = "visible"
         }
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.PLAYING) {
