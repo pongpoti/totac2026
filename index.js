@@ -38,6 +38,7 @@ app.use("/src", express.static("src"))
 app.use("/pacourse/signin", express.static("pacourse/signin"))
 app.use("/pacourse/auth", express.static("pacourse/auth"))
 app.use("/pacourse/complete", express.static("pacourse/complete"))
+app.use("/pacourse/video", express.static("pacourse/video"))
 
 app.get("/letter/init", (_, res) => {
     form().then((id) => {
